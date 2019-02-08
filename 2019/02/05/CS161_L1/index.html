@@ -137,18 +137,18 @@
 
 
 
-  <meta name="description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipli">
+  <meta name="description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipl">
 <meta name="keywords" content="CS161,Karatsuba Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="#CS161# Do you know how to multiply integers?">
 <meta property="og:url" content="http://yoursite.com/2019/02/05/CS161_L1/index.html">
 <meta property="og:site_name" content="Nick Studio">
-<meta property="og:description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipli">
+<meta property="og:description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipl">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-08T16:02:14.795Z">
+<meta property="og:updated_time" content="2019-02-08T16:06:46.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Do you know how to multiply integers?">
-<meta name="twitter:description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipli">
+<meta name="twitter:description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipl">
 
 
 
@@ -489,7 +489,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-09 00:02:14" itemprop="dateModified" datetime="2019-02-09T00:02:14+08:00">2019-02-09</time>
+                <time title="修改时间：2019-02-09 00:06:46" itemprop="dateModified" datetime="2019-02-09T00:06:46+08:00">2019-02-09</time>
               
             
           </span>
@@ -558,7 +558,8 @@
             对应CS161的Lecture 1
           </div>
 <h1 id="method-to-multiply-integers">Method to multiply integers</h1>
-<p>我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西</p>
+<p>我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。<br>
+这一节大概讲了那么两个东西</p>
 <ul>
 <li>Graduate-School Integer Multiplication</li>
 <li>Karatsuba Integer Multiplication</li>
@@ -566,8 +567,8 @@
 <p>//别问我这名字为什么这么鬼畜</p>
 <a id="more"></a>
 <h2 id="graduate-school-integer-multiplication">Graduate-School Integer Multiplication</h2>
-<p>不分析了...就是从小做到大的竖式进位乘法</p>
-<p>真的有什么要说的话，这节课里提到了一个看上去很Tricky的方法</p>
+<p>不分析了...就是从小做到大的竖式进位乘法<br>
+真的有什么要说的话，这节课里提到了一个看上去很Tricky的方法</p>
 <p>把数字各自分块成两块: <span class="math display">\[
 x=10^{n/2}+b,\ y=10^{n/2}+d\\
 x*y =10^nac+10^{n/2}(ad+bc)+bd
@@ -575,8 +576,8 @@ x*y =10^nac+10^{n/2}(ad+bc)+bd
 T(n)=4T(n/2)+O(n)
 \]</span> 在后面利用<code>Master Method</code>进行分析的结果，容易得到<span class="math inline">\(T(n)=O(n^2)\)</span></p>
 <h2 id="karatsuba-integer-multiplication">Karatsuba Integer Multiplication</h2>
-<p>事实上，在这里虽然<span class="math inline">\(x*y\)</span>已经是一个&quot;Information efficient&quot;的表示，但并不意味着它&quot;Computation efficient&quot;</p>
-<p>既然乘法对于我们而言是一个代价较大的操作，那么我们能不能尽量考虑减少乘法。（哪怕增多加减法） <span class="math display">\[
+<p>事实上，在这里虽然<span class="math inline">\(x*y\)</span>已经是一个&quot;Information efficient&quot;的表示，但并不意味着它&quot;Computation efficient&quot;<br>
+既然乘法对于我们而言是一个代价较大的操作，那么我们能不能尽量考虑减少乘法。（哪怕增多加减法） <span class="math display">\[
 ad+bc=(a+b)(c+d)-ac-bd
 \]</span> 似乎有一些神奇的事情发生了，原本两次乘法的操作似乎现在用一次就可以完成了呢！</p>
 <p>于是原本$T(n) $，也就是<code>Worst Running Time</code>，的递推式似乎也发生了变化！ <span class="math display">\[
