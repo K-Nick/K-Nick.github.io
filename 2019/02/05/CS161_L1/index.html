@@ -137,18 +137,18 @@
 
 
 
-  <meta name="description" content="对应CS161的Lecture 1            Method to multiply integers我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multiplication">
+  <meta name="description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipl">
 <meta name="keywords" content="CS161,Karatsuba Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="#CS161# Do you know how to multiply integers?">
 <meta property="og:url" content="http://yoursite.com/2019/02/05/CS161_L1/index.html">
 <meta property="og:site_name" content="Nick Studio">
-<meta property="og:description" content="对应CS161的Lecture 1            Method to multiply integers我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multiplication">
+<meta property="og:description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipl">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-02-08T15:51:58.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Do you know how to multiply integers?">
-<meta name="twitter:description" content="对应CS161的Lecture 1            Method to multiply integers我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multiplication">
+<meta name="twitter:description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipl">
 
 
 
@@ -557,7 +557,8 @@
         <div class="note success">
             <p>对应CS161的Lecture 1</p>
           </div>
-<h1 id="Method-to-multiply-integers"><a href="#Method-to-multiply-integers" class="headerlink" title="Method to multiply integers"></a>Method to multiply integers</h1><p>我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。</p>
+<h1 id="method-to-multiply-integers">Method to multiply integers</h1>
+<p>我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。</p>
 <p>这一节大概讲了那么两个东西</p>
 <ul>
 <li>Graduate-School Integer Multiplication</li>
@@ -565,12 +566,23 @@
 </ul>
 <p>//别问我这名字为什么这么鬼畜</p>
 <a id="more"></a>
-<h2 id="Graduate-School-Integer-Multiplication"><a href="#Graduate-School-Integer-Multiplication" class="headerlink" title="Graduate-School Integer Multiplication"></a>Graduate-School Integer Multiplication</h2><p>不分析了…就是从小做到大的竖式进位乘法</p>
+<h2 id="graduate-school-integer-multiplication">Graduate-School Integer Multiplication</h2>
+<p>不分析了...就是从小做到大的竖式进位乘法</p>
 <p>真的有什么要说的话，这节课里提到了一个看上去很Tricky的方法</p>
-<p>把数字各自分块成两块:<br>$$<br>x=10^{n/2}+b,\ y=10^{n/2}+d\<br>x*y =10^nac+10^{n/2}(ad+bc)+bd<br>$$<br>但是事实上，在这里如果我们分别对$ac,\ ad, \ bc, \ bd$进行计算，那么实际效率并没有提升<br>$$<br>T(n)=4T(n/2)+O(n)<br>$$<br>在后面利用<code>Master Method</code>进行分析的结果，容易得到$T(n)=O(n^2)$</p>
-<h2 id="Karatsuba-Integer-Multiplication"><a href="#Karatsuba-Integer-Multiplication" class="headerlink" title="Karatsuba Integer Multiplication"></a>Karatsuba Integer Multiplication</h2><p>事实上，在这里虽然x*y已经是一个”Information efficient”的表示，但并不意味着它”Computation efficient”</p>
-<p>既然乘法对于我们而言是一个代价较大的操作，那么我们能不能尽量考虑减少乘法。（哪怕增多加减法）<br>$$<br>ad+bc=(a+b)(c+d)-ac-bd<br>$$<br>似乎有一些神奇的事情发生了，原本两次乘法的操作似乎现在用一次就可以完成了呢！</p>
-<p>于是原本$T(n) $，也就是<code>Worst Running Time</code>，的递推式似乎也发生了变化！<br>$$<br>T(n)=3T(n/2)+O(n)<br>$$<br>我们再次利用<code>Master Method</code>，得到的新的结果$T(n)=O(n^{\log_2{3}})\approx O(n^{1.6})$</p>
+<p>把数字各自分块成两块: <span class="math display">\[
+x=10^{n/2}+b,\ y=10^{n/2}+d\\
+x*y =10^nac+10^{n/2}(ad+bc)+bd
+\]</span> 但是事实上，在这里如果我们分别对<span class="math inline">\(ac,\ ad, \ bc, \ bd\)</span>进行计算，那么实际效率并没有提升 <span class="math display">\[
+T(n)=4T(n/2)+O(n)
+\]</span> 在后面利用<code>Master Method</code>进行分析的结果，容易得到<span class="math inline">\(T(n)=O(n^2)\)</span></p>
+<h2 id="karatsuba-integer-multiplication">Karatsuba Integer Multiplication</h2>
+<p>事实上，在这里虽然x*y已经是一个&quot;Information efficient&quot;的表示，但并不意味着它&quot;Computation efficient&quot;</p>
+<p>既然乘法对于我们而言是一个代价较大的操作，那么我们能不能尽量考虑减少乘法。（哪怕增多加减法） <span class="math display">\[
+ad+bc=(a+b)(c+d)-ac-bd
+\]</span> 似乎有一些神奇的事情发生了，原本两次乘法的操作似乎现在用一次就可以完成了呢！</p>
+<p>于是原本$T(n) $，也就是<code>Worst Running Time</code>，的递推式似乎也发生了变化！ <span class="math display">\[
+T(n)=3T(n/2)+O(n)
+\]</span> 我们再次利用<code>Master Method</code>，得到的新的结果<span class="math inline">\(T(n)=O(n^{\log_2{3}})\approx O(n^{1.6})\)</span></p>
 <blockquote class="blockquote-center"><p>似乎的确是个略优的算法呢！</p>
 </blockquote>
 <p>然后我动手实现了一下这个诡异的算法</p>
@@ -829,7 +841,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Method-to-multiply-integers"><span class="nav-number">1.</span> <span class="nav-text">Method to multiply integers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Graduate-School-Integer-Multiplication"><span class="nav-number">1.1.</span> <span class="nav-text">Graduate-School Integer Multiplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Karatsuba-Integer-Multiplication"><span class="nav-number">1.2.</span> <span class="nav-text">Karatsuba Integer Multiplication</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#method-to-multiply-integers"><span class="nav-number">1.</span> <span class="nav-text">Method to multiply integers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#graduate-school-integer-multiplication"><span class="nav-number">1.1.</span> <span class="nav-text">Graduate-School Integer Multiplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#karatsuba-integer-multiplication"><span class="nav-number">1.2.</span> <span class="nav-text">Karatsuba Integer Multiplication</span></a></li></ol></li></ol></div>
             
 
           </div>
