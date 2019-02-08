@@ -557,7 +557,7 @@
 
       
         <div class="note success">
-            <p>对应CS161的Lecture 1</p>
+            对应CS161的Lecture 1
           </div>
 <p>我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。</p>
 <p>大整数乘法一点都不新鲜，写高精度以前都是写过的，n^2的效率也没什么好说的</p>
@@ -568,7 +568,8 @@
 <img src="https://user-images.githubusercontent.com/35764666/52347215-60266e80-2a5c-11e9-937c-10c3e6bc96b3.jpg" alt="cs161 algorithm i-1">
 <p class="caption">cs161 algorithm i-1</p>
 </div>
-<blockquote class="blockquote-center"><p>然后我动手实现了一下这个诡异的算法</p>
+<blockquote class="blockquote-center">
+然后我动手实现了一下这个诡异的算法
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> multHelpers <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#makeInt(x)</span></span><br><span class="line"><span class="comment">#getDigits(X)</span></span><br><span class="line"><span class="comment">#def multABunch(myFn, nVals, numTrials=20</span></span><br><span class="line"><span class="comment">#myFn - Function to be used in multiplication</span></span><br><span class="line"><span class="comment">#nVals - List include different length for data generator</span></span><br><span class="line"><span class="comment">#numTrials - how many times of testing for each length</span></span><br><span class="line"><span class="comment">#x - List, Y - Int</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">karatsubaMult</span><span class="params">(X, Y)</span>:</span></span><br><span class="line">    x = getDigits(X)</span><br><span class="line">    y = getDigits(Y)</span><br><span class="line">    nx = len(x)</span><br><span class="line">    ny = len(y)</span><br><span class="line">    n = max(nx, ny)</span><br><span class="line">    x = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n-nx)] + x</span><br><span class="line">    y = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n-ny)] + y</span><br><span class="line">    <span class="keyword">return</span> karatsubaMult_Helper(x, y)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">karatsubaMult_Helper</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    n = len(x)</span><br><span class="line">    <span class="keyword">if</span> (n!=<span class="number">1</span> <span class="keyword">and</span> n%<span class="number">2</span>==<span class="number">1</span>):</span><br><span class="line">        x = [<span class="number">0</span>] + x</span><br><span class="line">        y = [<span class="number">0</span>] + y</span><br><span class="line">    n = len(x)</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>): <span class="keyword">return</span> x[<span class="number">0</span>]*y[<span class="number">0</span>]</span><br><span class="line">    a = x[:n//<span class="number">2</span>]</span><br><span class="line">    b = x[n//<span class="number">2</span>:]</span><br><span class="line">    c = y[:n//<span class="number">2</span>]</span><br><span class="line">    d = y[n//<span class="number">2</span>:]</span><br><span class="line">    termAC = karatsubaMult_Helper(a, c)</span><br><span class="line">    termBD = karatsubaMult_Helper(b, d)</span><br><span class="line">    termMID = karatsubaMult(makeInt(a)+makeInt(b), makeInt(c)+makeInt(d))-termAC-termBD</span><br><span class="line">    ret = (<span class="number">10</span>**n)*termAC+(<span class="number">10</span>**(n//<span class="number">2</span>))*termMID+termBD</span><br><span class="line">    <span class="comment">#print(x, y, termAC, termBD, termMID, ret)</span></span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    X = <span class="number">212342131398</span></span><br><span class="line">    Y = <span class="number">25415243554767</span></span><br><span class="line">    print(X*Y)</span><br><span class="line">    print(karatsubaMult(X, Y))</span><br></pre></td></tr></table></figure>
 
@@ -612,6 +613,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/05/认知天性小感/" rel="next" title="《认知天性》小感">
+                <i class="fa fa-chevron-left"></i> 《认知天性》小感
+              </a>
             
           </div>
 
@@ -688,7 +693,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

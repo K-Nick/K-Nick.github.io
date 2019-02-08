@@ -2023,7 +2023,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #54bdbf;
+  background: #2f208f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2805,4 +2805,18 @@ span#inline-toc {
   padding: 0.05em 0.4em;
   margin: 2px 5px 2px 0px;
   line-height: 1.5;
+}
+p {
+  margin: 0 0 1em 0;
+}
+body {
+  position: relative;
+  font-family: "Linux Biolinum", 'Noto Serif SC', sans-serif;
+  font-size: 16px;
+  line-height: 2;
+  color: #555;
+  background: #fff;
+}
+.post-body {
+  font-family: "Linux Biolinum", 'Noto Serif SC', sans-serif;
 }
