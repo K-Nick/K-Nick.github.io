@@ -137,18 +137,18 @@
 
 
 
-  <meta name="description" content="对应CS161的Lecture 1            Method to multiply integers我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multiplication">
+  <meta name="description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipl">
 <meta name="keywords" content="CS161,Karatsuba Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="#CS161# Do you know how to multiply integers?">
 <meta property="og:url" content="http://yoursite.com/2019/02/05/CS161_L1/index.html">
 <meta property="og:site_name" content="Nick Studio">
-<meta property="og:description" content="对应CS161的Lecture 1            Method to multiply integers我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multiplication">
+<meta property="og:description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipl">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-02-08T16:06:46.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Do you know how to multiply integers?">
-<meta name="twitter:description" content="对应CS161的Lecture 1            Method to multiply integers我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multiplication">
+<meta name="twitter:description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multipl">
 
 
 
@@ -555,29 +555,36 @@
 
       
         <div class="note success">
-            <p>对应CS161的Lecture 1</p>
+            对应CS161的Lecture 1
           </div>
-<h1 id="Method-to-multiply-integers"><a href="#Method-to-multiply-integers" class="headerlink" title="Method to multiply integers"></a>Method to multiply integers</h1><p>我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。<br>这一节大概讲了那么两个东西</p>
+<h1 id="method-to-multiply-integers">Method to multiply integers</h1>
+<p>我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。<br>
+这一节大概讲了那么两个东西</p>
 <ul>
 <li>Graduate-School Integer Multiplication</li>
 <li>Karatsuba Integer Multiplication</li>
 </ul>
 <p>//别问我这名字为什么这么鬼畜</p>
 <a id="more"></a>
-<h2 id="Graduate-School-Integer-Multiplication"><a href="#Graduate-School-Integer-Multiplication" class="headerlink" title="Graduate-School Integer Multiplication"></a>Graduate-School Integer Multiplication</h2><p>不分析了…就是从小做到大的竖式进位乘法<br>真的有什么要说的话，这节课里提到了一个看上去很Tricky的方法</p>
-<p>把数字各自分块成两块:</p>
-<script type="math/tex; mode=display">
+<h2 id="graduate-school-integer-multiplication">Graduate-School Integer Multiplication</h2>
+<p>不分析了...就是从小做到大的竖式进位乘法<br>
+真的有什么要说的话，这节课里提到了一个看上去很Tricky的方法</p>
+<p>把数字各自分块成两块: <span class="math display">\[
 x=10^{n/2}+b,\ y=10^{n/2}+d\\
-x*y =10^nac+10^{n/2}(ad+bc)+bd</script><p>但是事实上，在这里如果我们分别对$ac,\ ad, \ bc, \ bd$进行计算，那么实际效率并没有提升</p>
-<script type="math/tex; mode=display">
-T(n)=4T(n/2)+O(n)</script><p>在后面利用<code>Master Method</code>进行分析的结果，容易得到$T(n)=O(n^2)$</p>
-<h2 id="Karatsuba-Integer-Multiplication"><a href="#Karatsuba-Integer-Multiplication" class="headerlink" title="Karatsuba Integer Multiplication"></a>Karatsuba Integer Multiplication</h2><p>事实上，在这里虽然$x*y$已经是一个”Information efficient”的表示，但并不意味着它”Computation efficient”<br>既然乘法对于我们而言是一个代价较大的操作，那么我们能不能尽量考虑减少乘法。（哪怕增多加减法）</p>
-<script type="math/tex; mode=display">
-ad+bc=(a+b)(c+d)-ac-bd</script><p>似乎有一些神奇的事情发生了，原本两次乘法的操作似乎现在用一次就可以完成了呢！</p>
-<p>于是原本$T(n) $，也就是<code>Worst Running Time</code>，的递推式似乎也发生了变化！</p>
-<script type="math/tex; mode=display">
-T(n)=3T(n/2)+O(n)</script><p>我们再次利用<code>Master Method</code>，得到的新的结果$T(n)=O(n^{\log_2{3}})\approx O(n^{1.6})$</p>
-<blockquote class="blockquote-center"><p>似乎的确是个略优的算法呢！</p>
+x*y =10^nac+10^{n/2}(ad+bc)+bd
+\]</span> 但是事实上，在这里如果我们分别对<span class="math inline">\(ac,\ ad, \ bc, \ bd\)</span>进行计算，那么实际效率并没有提升 <span class="math display">\[
+T(n)=4T(n/2)+O(n)
+\]</span> 在后面利用<code>Master Method</code>进行分析的结果，容易得到<span class="math inline">\(T(n)=O(n^2)\)</span></p>
+<h2 id="karatsuba-integer-multiplication">Karatsuba Integer Multiplication</h2>
+<p>事实上，在这里虽然<span class="math inline">\(x*y\)</span>已经是一个&quot;Information efficient&quot;的表示，但并不意味着它&quot;Computation efficient&quot;<br>
+既然乘法对于我们而言是一个代价较大的操作，那么我们能不能尽量考虑减少乘法。（哪怕增多加减法） <span class="math display">\[
+ad+bc=(a+b)(c+d)-ac-bd
+\]</span> 似乎有一些神奇的事情发生了，原本两次乘法的操作似乎现在用一次就可以完成了呢！</p>
+<p>于是原本$T(n) $，也就是<code>Worst Running Time</code>，的递推式似乎也发生了变化！ <span class="math display">\[
+T(n)=3T(n/2)+O(n)
+\]</span> 我们再次利用<code>Master Method</code>，得到的新的结果<span class="math inline">\(T(n)=O(n^{\log_2{3}})\approx O(n^{1.6})\)</span></p>
+<blockquote class="blockquote-center">
+似乎的确是个略优的算法呢！
 </blockquote>
 <p>然后我动手实现了一下这个诡异的算法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> multHelpers <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#makeInt(x)</span></span><br><span class="line"><span class="comment">#getDigits(X)</span></span><br><span class="line"><span class="comment">#def multABunch(myFn, nVals, numTrials=20</span></span><br><span class="line"><span class="comment">#myFn - Function to be used in multiplication</span></span><br><span class="line"><span class="comment">#nVals - List include different length for data generator</span></span><br><span class="line"><span class="comment">#numTrials - how many times of testing for each length</span></span><br><span class="line"><span class="comment">#x - List, Y - Int</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">karatsubaMult</span><span class="params">(X, Y)</span>:</span></span><br><span class="line">    x = getDigits(X)</span><br><span class="line">    y = getDigits(Y)</span><br><span class="line">    nx = len(x)</span><br><span class="line">    ny = len(y)</span><br><span class="line">    n = max(nx, ny)</span><br><span class="line">    x = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n-nx)] + x</span><br><span class="line">    y = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n-ny)] + y</span><br><span class="line">    <span class="keyword">return</span> karatsubaMult_Helper(x, y)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">karatsubaMult_Helper</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    n = len(x)</span><br><span class="line">    <span class="keyword">if</span> (n!=<span class="number">1</span> <span class="keyword">and</span> n%<span class="number">2</span>==<span class="number">1</span>):</span><br><span class="line">        x = [<span class="number">0</span>] + x</span><br><span class="line">        y = [<span class="number">0</span>] + y</span><br><span class="line">    n = len(x)</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>): <span class="keyword">return</span> x[<span class="number">0</span>]*y[<span class="number">0</span>]</span><br><span class="line">    a = x[:n//<span class="number">2</span>]</span><br><span class="line">    b = x[n//<span class="number">2</span>:]</span><br><span class="line">    c = y[:n//<span class="number">2</span>]</span><br><span class="line">    d = y[n//<span class="number">2</span>:]</span><br><span class="line">    termAC = karatsubaMult_Helper(a, c)</span><br><span class="line">    termBD = karatsubaMult_Helper(b, d)</span><br><span class="line">    termMID = karatsubaMult(makeInt(a)+makeInt(b), makeInt(c)+makeInt(d))-termAC-termBD</span><br><span class="line">    ret = (<span class="number">10</span>**n)*termAC+(<span class="number">10</span>**(n//<span class="number">2</span>))*termMID+termBD</span><br><span class="line">    <span class="comment">#print(x, y, termAC, termBD, termMID, ret)</span></span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    X = <span class="number">212342131398</span></span><br><span class="line">    Y = <span class="number">25415243554767</span></span><br><span class="line">    print(X*Y)</span><br><span class="line">    print(karatsubaMult(X, Y))</span><br></pre></td></tr></table></figure>
@@ -841,7 +848,7 @@ T(n)=3T(n/2)+O(n)</script><p>我们再次利用<code>Master Method</code>，得�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Method-to-multiply-integers"><span class="nav-number">1.</span> <span class="nav-text">Method to multiply integers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Graduate-School-Integer-Multiplication"><span class="nav-number">1.1.</span> <span class="nav-text">Graduate-School Integer Multiplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Karatsuba-Integer-Multiplication"><span class="nav-number">1.2.</span> <span class="nav-text">Karatsuba Integer Multiplication</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#method-to-multiply-integers"><span class="nav-number">1.</span> <span class="nav-text">Method to multiply integers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#graduate-school-integer-multiplication"><span class="nav-number">1.1.</span> <span class="nav-text">Graduate-School Integer Multiplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#karatsuba-integer-multiplication"><span class="nav-number">1.2.</span> <span class="nav-text">Karatsuba Integer Multiplication</span></a></li></ol></li></ol></div>
             
 
           </div>
