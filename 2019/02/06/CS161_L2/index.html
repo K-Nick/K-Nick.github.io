@@ -150,7 +150,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52516886-4d36b880-2c6d-11e9-9a4d-a9ef0fa4e918.gif">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52519429-2b9df700-2c96-11e9-9622-177f4fd0152c.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52516884-4c058b80-2c6d-11e9-960e-b282e0784f92.gif">
-<meta property="og:updated_time" content="2019-02-09T11:12:49.908Z">
+<meta property="og:updated_time" content="2019-02-09T12:22:54.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Devide-and-conquer, Mergesort, and Big-O notation">
 <meta name="twitter:description" content="对应CS161的Lecture2            Correctness and Running Time 算法中最关键的是两个问题  Correctness //Does it work? Running Time //How fast?  今天要讲的正是这两个问题，引入loop invariant这个概念 //这个概念非常重要，是证明算法正确性的">
@@ -495,7 +495,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-09 19:12:49" itemprop="dateModified" datetime="2019-02-09T19:12:49+08:00">2019-02-09</time>
+                <time title="修改时间：2019-02-09 20:22:54" itemprop="dateModified" datetime="2019-02-09T20:22:54+08:00">2019-02-09</time>
               
             
           </span>
@@ -604,18 +604,18 @@ A[0],A[1],\dots,A[j^*],\dots,A[i-1],A[i]
 <h3 id="running-time">Running Time</h3>
 <p>这里我们不难看到，若序列长为<span class="math inline">\(n\)</span>，外层循环<span class="math inline">\(n\)</span>次，而内层<span class="math inline">\(j\)</span>最多循环<span class="math inline">\(i\)</span>次，那么精确一些的结果是 <span class="math display">\[
 1+2+\dots+n=\frac{n(n+1)}{2}
-\]</span> 但是实际上我们并不care这个常数，因此其实是直接当做<span class="math inline">\(n^2​\)</span>来看。至于原因，后面会提。</p>
+\]</span> 但是实际上我们并不care这个常数，因此其实是直接当做<span class="math inline">\(n^2\)</span>来看。至于原因，后面会提。</p>
 <h2 id="mergesort">MergeSort</h2>
-<figure class="half">
-<img src="https://user-images.githubusercontent.com/35764666/52516883-4c058b80-2c6d-11e9-8ac2-4812fc2040e5.gif" width="40%/"> <img src="https://user-images.githubusercontent.com/35764666/52516886-4d36b880-2c6d-11e9-9a4d-a9ef0fa4e918.gif" width="40%/">
-</figure>
+<p><img src="https://user-images.githubusercontent.com/35764666/52516883-4c058b80-2c6d-11e9-8ac2-4812fc2040e5.gif" width="50%" style="display: inline-block; vertical-align: text-top; border: 1px solid #fff"><img src="https://user-images.githubusercontent.com/35764666/52516886-4d36b880-2c6d-11e9-9a4d-a9ef0fa4e918.gif" width="50%" style="display: inline-block; vertical-align: text-top; border: 1px solid #fff"></p>
 <blockquote>
 <p>绿色处为哨兵！</p>
 </blockquote>
 <h3 id="correctness-1">Correctness</h3>
-<p>这里需要先证明一个<code>recursion invariant</code><br>
-&gt; 不难看出算法分析中非常喜欢<code>invariant</code>，也就是被操作对象维持一定的property，这个property最后可以帮助我们证明算法的正确性。//比如在这里，对象就是无序序列，目标就是让它变有序。</p>
-<p>也就是<code>MERGE</code>以后的结果必须要有序，所以最终证明变成了证明 <blockquote class="blockquote-center">MERGE可以正确执行它的工作。</blockquote> 所以接下来问题又回到了<code>loop invariant</code>，继续开始我们的四步曲吧！</p>
+<p>这里需要先证明一个<code>recursion invariant</code></p>
+<blockquote>
+<p>不难看出算法分析中非常喜欢<code>invariant</code>，也就是被操作对象维持一定的property，这个property最后可以帮助我们证明算法的正确性。//比如在这里，对象就是无序序列，目标就是让它变有序。</p>
+</blockquote>
+<p>也就是<code>Merge</code>以后的结果必须要有序，所以最终证明变成了证明 <blockquote class="blockquote-center">Merge可以正确执行它的工作。</blockquote> 所以接下来问题又回到了<code>loop invariant</code>，继续开始我们的四步曲吧！</p>
 <p><img src="https://user-images.githubusercontent.com/35764666/52519429-2b9df700-2c96-11e9-9622-177f4fd0152c.png" width="60%"></p>
 <ul>
 <li><strong>Inductive Hypothesis:</strong> (1)在第<span class="math inline">\(k\)</span>次循环后，<span class="math inline">\(A[p:(k+1)]\)</span>有序 (2)<span class="math inline">\(i,j\)</span>指向对应组中最小的元素。</li>
@@ -626,9 +626,32 @@ A[0],A[1],\dots,A[j^*],\dots,A[i-1],A[i]
 <h3 id="running-time-1">Running Time</h3>
 <p><img src="https://user-images.githubusercontent.com/35764666/52516884-4c058b80-2c6d-11e9-960e-b282e0784f92.gif"></p>
 <p>证明分支算法的时间效率，一般利用递推式，和画出以上的<code>recursion tree</code>两种<br>
-似乎实质是一样的，&quot;我只管我这层的事，递归调用花了多少时间我不管，先当未知数。&quot;</p>
-<p>递推式后面在讲<code>master method</code>会再提到，这里</p>
-<p>2</p>
+似乎实质是一样的，只不过画出树来稍微直观一些（虽然递推明明也很直观啊）</p>
+<p>首先我们分析一下<code>Merge</code>函数的效率，很容易得到为<span class="math inline">\(O(n)\)</span><br>
+//具体分析过程只要数操作数就行了，因为<code>MERGE</code>函数并没有内部调用只有顺序执行</p>
+<p>分析完<code>Merge</code>函数，我们要开始分析整个<code>MergeSort</code> <span class="math display">\[
+\begin{align*}
+T(n) &amp;= T(n/2)+T(n/2)+O(n)\\
+&amp;=2\cdot T(n/2)+O(n)
+\end{align*}
+\]</span></p>
+<p>由上面画出的这颗树也很容易看到，对于第t层而言，任务有<span class="math inline">\(2^t\)</span>个，每个规模为<span class="math inline">\(\frac{n}{2^t}​\)</span><br>
+那么对于单层而言，他们“自己做的活”(不包括交给子任务的) <span class="math display">\[
+\begin{align*}
+Work\ at\ Level\ i &amp;= (number\ of\ subproblems) \cdot (work\ per\ subproblem)\\
+&amp;= 2^i \cdot O(\frac{n}{2^i})\\
+&amp;=O(n)
+\end{align*}
+\]</span></p>
+<p>而层数共有<span class="math inline">\(\log_2{n}\)</span>层，于是很容易得到 <span class="math display">\[
+\begin{align*}
+Total\ Work &amp;= (Work\ per\ level)\cdot(number\ of\ levels) \\
+&amp;=O(n)\cdot \log_2(n)\\
+&amp;=O(n\log_2{n})
+\end{align*}
+\]</span> 于是我们得到了最终答案。</p>
+<p>实际上对于这类子问题规模相同的算法，我们可以用<code>master method</code>进行计算。<br>
+在这里实际上已经有了一些<code>master method</code>的影子，需要好好品味。</p>
 <h2 id="algorithm-implementation">Algorithm Implementation</h2>
 <p>这里我们再顺便把几种sort算法用python实现一下<br>
 这里尤其要注意，MergeSort中的<code>哨兵</code>，对于边界条件的控制作用（卡死不让访问无效内存）</p>
