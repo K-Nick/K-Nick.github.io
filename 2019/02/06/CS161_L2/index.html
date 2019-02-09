@@ -146,7 +146,7 @@
 <meta property="og:description" content="对应CS161的Lecture2            Correctness and Running Time 算法中最关键的是两个问题  Correctness //Does it work? Running Time //How fast?  今天要讲的正是这两个问题，引入loop invariant这个概念 //这个概念非常重要，是证明算法正确性的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52516880-4b6cf500-2c6d-11e9-8117-80dc28bf35a6.gif">
-<meta property="og:updated_time" content="2019-02-09T09:41:13.568Z">
+<meta property="og:updated_time" content="2019-02-09T09:43:03.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Devide-and-conquer, Mergesort, and Big-O notation">
 <meta name="twitter:description" content="对应CS161的Lecture2            Correctness and Running Time 算法中最关键的是两个问题  Correctness //Does it work? Running Time //How fast?  今天要讲的正是这两个问题，引入loop invariant这个概念 //这个概念非常重要，是证明算法正确性的">
@@ -491,7 +491,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-09 17:41:13" itemprop="dateModified" datetime="2019-02-09T17:41:13+08:00">2019-02-09</time>
+                <time title="修改时间：2019-02-09 17:43:03" itemprop="dateModified" datetime="2019-02-09T17:43:03+08:00">2019-02-09</time>
               
             
           </span>
@@ -576,7 +576,10 @@
 <a id="more"></a>
 <h2 id="insertionsort">InsertionSort</h2>
 <h3 id="procedure">Procedure</h3>
-<p><img src="https://user-images.githubusercontent.com/35764666/52516880-4b6cf500-2c6d-11e9-8117-80dc28bf35a6.gif" width="80%"> &gt; 注意这里是python代码，range(l,r)和A[l:r]均是前闭后开</p>
+<p><img src="https://user-images.githubusercontent.com/35764666/52516880-4b6cf500-2c6d-11e9-8117-80dc28bf35a6.gif" width="60%"></p>
+<blockquote>
+<p>注意这里是python代码，range(l,r)和A[l:r]均是前闭后开</p>
+</blockquote>
 <p>流程非常简单，每一次取已排部分末尾，向夹娃娃机一样，用current夹起来，其他元素让出位子，然后用current放上去，形成新的有序序列。</p>
 <h3 id="correctness">Correctness</h3>
 <p>事实上从过程的语言叙述中，我们就可以看出这个算法的一部分正确性证明了。<br>
