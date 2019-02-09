@@ -137,22 +137,22 @@
 
 
 
-  <meta name="description" content="对应CS161的Lecture2            算法中最关键的是两个问题  Correctness (Does it work?) Efficiency (How fast?)  作为热身，我们先分析一下 InsertionSort 然后我们会对更复杂的MergeSort进行分析，并由此开始进入Devide and Conquer这一思想的介绍 （">
+  <meta name="description" content="对应CS161的Lecture2            算法中最关键的是两个问题  Correctness (Does it work?) Efficiency (How fast?)  今天要讲的正是这两个问题，引入loop invariant这个概念 //这个概念非常重要 整体而言，我们依次会讲解以下">
 <meta name="keywords" content="CS161,Algorithm Analysis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="#CS161# Devide-and-conquer, Mergesort, and Big-O notation">
 <meta property="og:url" content="http://yoursite.com/2019/02/06/CS161_L2/index.html">
 <meta property="og:site_name" content="Nick Studio">
-<meta property="og:description" content="对应CS161的Lecture2            算法中最关键的是两个问题  Correctness (Does it work?) Efficiency (How fast?)  作为热身，我们先分析一下 InsertionSort 然后我们会对更复杂的MergeSort进行分析，并由此开始进入Devide and Conquer这一思想的介绍 （">
+<meta property="og:description" content="对应CS161的Lecture2            算法中最关键的是两个问题  Correctness (Does it work?) Efficiency (How fast?)  今天要讲的正是这两个问题，引入loop invariant这个概念 //这个概念非常重要 整体而言，我们依次会讲解以下">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52318101-d778e580-29fd-11e9-9ffd-47db24595557.jpg">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52318106-d942a900-29fd-11e9-81e6-41b0c2255fe5.jpg">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52318108-dba50300-29fd-11e9-8d4e-af1eccca91e9.jpg">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52318650-6686fd00-2a00-11e9-9b2a-8dd4087b3fcd.png">
-<meta property="og:updated_time" content="2019-02-08T14:18:23.485Z">
+<meta property="og:updated_time" content="2019-02-09T08:16:18.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Devide-and-conquer, Mergesort, and Big-O notation">
-<meta name="twitter:description" content="对应CS161的Lecture2            算法中最关键的是两个问题  Correctness (Does it work?) Efficiency (How fast?)  作为热身，我们先分析一下 InsertionSort 然后我们会对更复杂的MergeSort进行分析，并由此开始进入Devide and Conquer这一思想的介绍 （">
+<meta name="twitter:description" content="对应CS161的Lecture2            算法中最关键的是两个问题  Correctness (Does it work?) Efficiency (How fast?)  今天要讲的正是这两个问题，引入loop invariant这个概念 //这个概念非常重要 整体而言，我们依次会讲解以下">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/35764666/52318101-d778e580-29fd-11e9-9ffd-47db24595557.jpg">
 
 
@@ -494,7 +494,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-08 22:18:23" itemprop="dateModified" datetime="2019-02-08T22:18:23+08:00">2019-02-08</time>
+                <time title="修改时间：2019-02-09 16:16:18" itemprop="dateModified" datetime="2019-02-09T16:16:18+08:00">2019-02-09</time>
               
             
           </span>
@@ -567,10 +567,9 @@
 <li>Correctness (Does it work?)</li>
 <li>Efficiency (How fast?)</li>
 </ul>
-<p>作为热身，我们先分析一下 <code>InsertionSort</code></p>
-<p>然后我们会对更复杂的<code>MergeSort</code>进行分析，并由此开始进入<code>Devide and Conquer</code>这一思想的介绍</p>
-<p>（也就是分治思想啦）</p>
-<p>为了避免指针这些与理论算法有些脱节的实现层面的因素影响理解与展示，这里采用<code>Python</code>进行实现</p>
+<p>今天要讲的正是这两个问题，引入<code>loop invariant</code>这个概念<br>
+//这个概念非常重要</p>
+<p>整体而言，我们依次会讲解以下</p>
 <a id="more"></a>
 <p><img src="https://user-images.githubusercontent.com/35764666/52318101-d778e580-29fd-11e9-9ffd-47db24595557.jpg" alt="cs161 algorithm i-7"> <img src="https://user-images.githubusercontent.com/35764666/52318106-d942a900-29fd-11e9-81e6-41b0c2255fe5.jpg" alt="cs161 algorithm i-8"> <img src="https://user-images.githubusercontent.com/35764666/52318108-dba50300-29fd-11e9-8d4e-af1eccca91e9.jpg" alt="cs161 algorithm i-9"></p>
 <p>这里我们再顺便把几种sort算法用python实现一下</p>
