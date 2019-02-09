@@ -2023,7 +2023,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f9ffe2;
+  background: #0e8ae7;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3355,4 +3355,13 @@ body {
 .post-body {
   font-family: "Linux Biolinum", 'Noto Serif SC', sans-serif;
   text-align: justify !important;
+}
+@font-face {
+  font-family: zapfino;
+  src: url("/fonts/Zapfino.ttf");
+}
+.site-title {
+  font-size: 20px;
+  font-family: 'zapfino';
+  top: 20px !important;
 }
