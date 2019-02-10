@@ -137,13 +137,13 @@
 
 
 
-  <meta name="description" content="对应CS161的Lecture2            Correctness and Running Time 算法中最关键的是两个问题  Correctness //Does it work? Running Time //How fast?  今天要讲的正是这两个问题，引入loop invariant这个概念 //这个概念非常重要，是证明算法正确性的">
+  <meta name="description" content="对应CS161的Lecture2            Correctness and Running Time算法中最关键的是两个问题  Correctness       //Does it work? Running Time   //How fast?  今天要讲的正是这两个问题，引入loop invariant这个概念//这个概念非常重要，是证明算法正确性的利器">
 <meta name="keywords" content="CS161,Algorithm Analysis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="#CS161# Devide-and-conquer, Mergesort, and Big-O notation">
 <meta property="og:url" content="http://yoursite.com/2019/02/06/CS161_L2/index.html">
 <meta property="og:site_name" content="Nick Studio">
-<meta property="og:description" content="对应CS161的Lecture2            Correctness and Running Time 算法中最关键的是两个问题  Correctness //Does it work? Running Time //How fast?  今天要讲的正是这两个问题，引入loop invariant这个概念 //这个概念非常重要，是证明算法正确性的">
+<meta property="og:description" content="对应CS161的Lecture2            Correctness and Running Time算法中最关键的是两个问题  Correctness       //Does it work? Running Time   //How fast?  今天要讲的正是这两个问题，引入loop invariant这个概念//这个概念非常重要，是证明算法正确性的利器">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52516880-4b6cf500-2c6d-11e9-8117-80dc28bf35a6.gif">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52516883-4c058b80-2c6d-11e9-8ac2-4812fc2040e5.gif">
@@ -155,7 +155,7 @@
 <meta property="og:updated_time" content="2019-02-10T04:00:54.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Devide-and-conquer, Mergesort, and Big-O notation">
-<meta name="twitter:description" content="对应CS161的Lecture2            Correctness and Running Time 算法中最关键的是两个问题  Correctness //Does it work? Running Time //How fast?  今天要讲的正是这两个问题，引入loop invariant这个概念 //这个概念非常重要，是证明算法正确性的">
+<meta name="twitter:description" content="对应CS161的Lecture2            Correctness and Running Time算法中最关键的是两个问题  Correctness       //Does it work? Running Time   //How fast?  今天要讲的正是这两个问题，引入loop invariant这个概念//这个概念非常重要，是证明算法正确性的利器">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/35764666/52516880-4b6cf500-2c6d-11e9-8117-80dc28bf35a6.gif">
 
 
@@ -563,16 +563,14 @@
 
       
         <div class="note success">
-            对应CS161的Lecture2
+            <p>对应CS161的Lecture2</p>
           </div>
-<h1 id="correctness-and-running-time">Correctness and Running Time</h1>
-<p>算法中最关键的是两个问题</p>
+<h1 id="Correctness-and-Running-Time"><a href="#Correctness-and-Running-Time" class="headerlink" title="Correctness and Running Time"></a>Correctness and Running Time</h1><p>算法中最关键的是两个问题</p>
 <ul>
-<li>Correctness //Does it work?</li>
-<li>Running Time //How fast?</li>
+<li>Correctness       //Does it work?</li>
+<li>Running Time   //How fast?</li>
 </ul>
-<p>今天要讲的正是这两个问题，引入<code>loop invariant</code>这个概念<br>
-//这个概念非常重要，是证明算法正确性的利器</p>
+<p>今天要讲的正是这两个问题，引入<code>loop invariant</code>这个概念<br>//这个概念非常重要，是证明算法正确性的利器</p>
 <p>整体而言，我们依次会讲解以下两个算法</p>
 <ul>
 <li>InsertionSort</li>
@@ -580,109 +578,84 @@
 </ul>
 <p>我们会从一开始提到的两个角度对这两个算法进行分析</p>
 <a id="more"></a>
-<h2 id="insertionsort">InsertionSort</h2>
-<p><img src="https://user-images.githubusercontent.com/35764666/52516880-4b6cf500-2c6d-11e9-8117-80dc28bf35a6.gif" width="60%/"></p>
+<h2 id="InsertionSort"><a href="#InsertionSort" class="headerlink" title="InsertionSort"></a>InsertionSort</h2><p><img src="https://user-images.githubusercontent.com/35764666/52516880-4b6cf500-2c6d-11e9-8117-80dc28bf35a6.gif" width="60%/"></p>
 <blockquote>
 <p>注意这里是python代码，range(l,r)和A[l:r]均是前闭后开</p>
 </blockquote>
 <p>流程非常简单，每一次取已排部分末尾，像夹娃娃机一样，用current夹起来，其他元素让出位子，然后用current放上去，形成新的有序序列。</p>
-<h3 id="correctness">Correctness</h3>
-<p>事实上从过程的语言叙述中，我们就可以看出这个算法的一部分正确性证明了。<br>
-但是显然这样证明不严谨，这里我们引入<code>loop invariant</code> （下称 LI ） 我们这里摘录一下Wikipedia中的部分解释</p>
-<blockquote class="blockquote-center">LI is a <b>property</b> of a program loop that is true before (and after) each iteration.<br>
-Knowing its invariant(s) is essential in <b>understanding the effect of a loop.</b></blockquote>
-<p>证明整个过程需要分四步，我们会在下面演示<br>
-(注意以下步骤中A下标从0开始，而第 <span class="math inline">\(i=n\)</span> 次循环的意义也取决于<span class="math inline">\(i​\)</span>的循环初始值)</p>
+<h3 id="Correctness"><a href="#Correctness" class="headerlink" title="Correctness"></a>Correctness</h3><p>事实上从过程的语言叙述中，我们就可以看出这个算法的一部分正确性证明了。<br>但是显然这样证明不严谨，这里我们引入<code>loop invariant</code> （下称 LI ）<br>我们这里摘录一下Wikipedia中的部分解释</p>
+<blockquote class="blockquote-center"><p>LI is a <b>property</b> of a program loop that is true before (and after) each iteration.<br><br>Knowing its invariant(s) is essential in <b>understanding the effect of a loop.</b></p>
+</blockquote>
+<p>证明整个过程需要分四步，我们会在下面演示<br>(注意以下步骤中A下标从0开始，而第 $i=n$ 次循环的意义也取决于$i​$的循环初始值)</p>
 <ul>
-<li><strong>Inductive Hypothesis:</strong> 在第<span class="math inline">\(i=n\)</span>次循环之后，<span class="math inline">\(A[:n+1]\)</span>有序</li>
-<li><strong>Base case:</strong> 第<span class="math inline">\(i=0\)</span>循环后(也就是<span class="math inline">\(i=1\)</span>开始前)，<span class="math inline">\(A[:1]\)</span>只有1个，显然有序</li>
-<li><strong>Inductive step:</strong> 假如现在第<span class="math inline">\(i-1\)</span>次循环结束，<span class="math inline">\(A[:i]\)</span>有序；那么在经过第<span class="math inline">\(i\)</span>次循环的插入操作后（内部<span class="math inline">\(j\)</span>循环），<span class="math inline">\(A[:i+1]\)</span>如下 <span class="math display">\[
-A[0],A[1],\dots,A[j^*],\dots,A[i-1],A[i]
-\]</span> 其中<span class="math inline">\(A[j^*]\)</span> 以左均为小于它的元素，以右均为大于它的元素，且左右各自相对有序，则显然现在经过了第<span class="math inline">\(i\)</span>次循环，<span class="math inline">\(A[:i+1]\)</span>整体有序</li>
-<li><strong>Conclusion</strong>: 当循环终止时，也就是第<span class="math inline">\(len(A)-1\)</span>次循环后，<span class="math inline">\(A[:len(A)]\)</span>有序，目标达成</li>
+<li><strong>Inductive Hypothesis:</strong> 在第$i=n$次循环之后，$A[:n+1]$有序</li>
+<li><strong>Base case:</strong> 第$i=0$循环后(也就是$i=1$开始前)，$A[:1]$只有1个，显然有序</li>
+<li><strong>Inductive step:</strong> 假如现在第$i-1$次循环结束，$A[:i]$有序；那么在经过第$i$次循环的插入操作后（内部$j$循环），$A[:i+1]$如下<script type="math/tex; mode=display">
+  A[0],A[1],\dots,A[j^*],\dots,A[i-1],A[i]</script>  其中$A[j^*]$ 以左均为小于它的元素，以右均为大于它的元素，且左右各自相对有序，则显然现在经过了第$i$次循环，$A[:i+1]$整体有序</li>
+<li><strong>Conclusion</strong>: 当循环终止时，也就是第$len(A)-1$次循环后，$A[:len(A)]$有序，目标达成 </li>
 </ul>
-<p>至此我们的算法证明完毕。<br>
-在这里我们可以获得的一点感悟是，读懂循环的所谓目的，其实流程无非是找到<code>Inductive Hypothesis</code>，并且让<code>Conclusion</code>能够为我们的实现目标。</p>
-<h3 id="running-time">Running Time</h3>
-<p>这里我们不难看到，若序列长为<span class="math inline">\(n\)</span>，外层循环<span class="math inline">\(n\)</span>次，而内层<span class="math inline">\(j\)</span>最多循环<span class="math inline">\(i\)</span>次，那么精确一些的结果是 <span class="math display">\[
-1+2+\dots+n=\frac{n(n+1)}{2}
-\]</span> 但是实际上我们并不care这个常数，因此其实是直接当做<span class="math inline">\(n^2\)</span>来看。至于原因，后面会提。</p>
-<h2 id="mergesort">MergeSort</h2>
-<p><img src="https://user-images.githubusercontent.com/35764666/52516883-4c058b80-2c6d-11e9-8ac2-4812fc2040e5.gif" width="50%" style="display: inline-block; vertical-align: text-top; border: 1px solid #fff"><img src="https://user-images.githubusercontent.com/35764666/52516886-4d36b880-2c6d-11e9-9a4d-a9ef0fa4e918.gif" width="50%" style="display: inline-block; vertical-align: text-top; border: 1px solid #fff"></p>
+<p>至此我们的算法证明完毕。<br>在这里我们可以获得的一点感悟是，读懂循环的所谓目的，其实流程无非是找到<code>Inductive Hypothesis</code>，并且让<code>Conclusion</code>能够为我们的实现目标。</p>
+<h3 id="Running-Time"><a href="#Running-Time" class="headerlink" title="Running Time"></a>Running Time</h3><p>这里我们不难看到，若序列长为$n$，外层循环$n$次，而内层$j$最多循环$i$次，那么精确一些的结果是</p>
+<script type="math/tex; mode=display">
+1+2+\dots+n=\frac{n(n+1)}{2}</script><p>但是实际上我们并不care这个常数，因此其实是直接当做$n^2$来看。至于原因，后面会提。</p>
+<h2 id="MergeSort"><a href="#MergeSort" class="headerlink" title="MergeSort"></a>MergeSort</h2><p><img src="https://user-images.githubusercontent.com/35764666/52516883-4c058b80-2c6d-11e9-8ac2-4812fc2040e5.gif" width="50%" style="display: inline-block; vertical-align: text-top; border: 1px solid #fff"><img src="https://user-images.githubusercontent.com/35764666/52516886-4d36b880-2c6d-11e9-9a4d-a9ef0fa4e918.gif" width="50%" style="display: inline-block; vertical-align: text-top; border: 1px solid #fff"></p>
 <blockquote>
 <p>绿色处为哨兵！</p>
 </blockquote>
-<h3 id="correctness-1">Correctness</h3>
-<p>这里需要先证明一个<code>recursion invariant</code></p>
+<h3 id="Correctness-1"><a href="#Correctness-1" class="headerlink" title="Correctness"></a>Correctness</h3><p>这里需要先证明一个<code>recursion invariant</code></p>
 <blockquote>
 <p>不难看出算法分析中非常喜欢<code>invariant</code>，也就是被操作对象维持一定的property，这个property最后可以帮助我们证明算法的正确性。//比如在这里，对象就是无序序列，目标就是让它变有序。</p>
 </blockquote>
-<p>也就是<code>Merge</code>以后的结果必须要有序，所以最终证明变成了证明 <blockquote class="blockquote-center">Merge可以正确执行它的工作。</blockquote> 所以接下来问题又回到了<code>loop invariant</code>，继续开始我们的四步曲吧！</p>
+<p>也就是<code>Merge</code>以后的结果必须要有序，所以最终证明变成了证明<br><blockquote class="blockquote-center"><p>Merge可以正确执行它的工作。</p>
+</blockquote><br>所以接下来问题又回到了<code>loop invariant</code>，继续开始我们的四步曲吧！</p>
 <p><img src="https://user-images.githubusercontent.com/35764666/52519429-2b9df700-2c96-11e9-9622-177f4fd0152c.png" width="60%"></p>
 <ul>
-<li><strong>Inductive Hypothesis:</strong> (1)在第<span class="math inline">\(k\)</span>次循环后，<span class="math inline">\(A[p:(k+1)]\)</span>有序 (2)<span class="math inline">\(i,j\)</span>指向对应组中最小的元素。</li>
-<li><strong>Base case:</strong> 当<span class="math inline">\(k=p-1\)</span>时，<span class="math inline">\(A[p:p]\)</span> 为空集，(1)显然成立。i=j=1,显然也符合(2)</li>
-<li><strong>Inductive step:</strong> 假如现在第<span class="math inline">\(k-1\)</span> 次循环后，<span class="math inline">\(A[p:k]\)</span> 有序,且<span class="math inline">\(L[i]\)</span> 和<span class="math inline">\(R[j]\)</span> 最小。则经过第<span class="math inline">\(k\)</span> 次循环后，<span class="math inline">\(L[i]\)</span> 与<span class="math inline">\(R[j]\)</span> 取较大值加入<span class="math inline">\(A[k]\)</span>，不妨假设现在取得是<span class="math inline">\(L[i]\)</span>，那么经过<span class="math inline">\(i+=1\)</span> 之后，显然<span class="math inline">\(L[i]\)</span> 仍是L剩下中最小，R中情况不变，因此显然(2)成立；而<span class="math inline">\(A[:k+1]\)</span> 在<span class="math inline">\(A[:k]\)</span> 有序的基础上，满足<span class="math inline">\(A[:k]\)</span> 所有元素均小于<span class="math inline">\(A[k]\)</span>，且<span class="math inline">\(A[:k]\)</span> 内部有序，<span class="math inline">\(A[k+1]\)</span> 显然有序。</li>
-<li><strong>Conclusion:</strong> 当<span class="math inline">\(k=r\)</span>循环完成时, <span class="math inline">\(A[p:(r+1)]\)</span>有序，达成目标。</li>
+<li><strong>Inductive Hypothesis:</strong> (1)在第$k$次循环后，$A[p:(k+1)]$有序  (2)$i,j$指向对应组中最小的元素。</li>
+<li><strong>Base case:</strong> 当$k=p-1$时，$A[p:p]$ 为空集，(1)显然成立。i=j=1,显然也符合(2)</li>
+<li><strong>Inductive step:</strong> 假如现在第$k-1$ 次循环后，$A[p:k]$ 有序,且$L[i]$ 和$R[j]$ 最小。则经过第$k$ 次循环后，$L[i]$ 与$R[j]$ 取较大值加入$A[k]$，不妨假设现在取得是$L[i]$，那么经过$i+=1$ 之后，显然$L[i]$ 仍是L剩下中最小，R中情况不变，因此显然(2)成立；而$A[:k+1]$ 在$A[:k]$ 有序的基础上，满足$A[:k]$ 所有元素均小于$A[k]$，且$A[:k]$ 内部有序，$A[k+1]$ 显然有序。</li>
+<li><strong>Conclusion:</strong> 当$k=r$循环完成时, $A[p:(r+1)]$有序，达成目标。</li>
 </ul>
-<h3 id="running-time-1">Running Time</h3>
-<p><img src="https://user-images.githubusercontent.com/35764666/52516884-4c058b80-2c6d-11e9-960e-b282e0784f92.gif"></p>
-<p>证明分支算法的时间效率，一般利用递推式，和画出以上的<code>recursion tree</code>两种<br>
-似乎实质是一样的，只不过画出树来稍微直观一些（虽然递推明明也很直观啊）</p>
-<p>首先我们分析一下<code>Merge</code>函数的效率，很容易得到为<span class="math inline">\(O(n)\)</span><br>
-//具体分析过程只要数操作数就行了，因为<code>MERGE</code>函数并没有内部调用只有顺序执行</p>
-<p>分析完<code>Merge</code>函数，我们要开始分析整个<code>MergeSort</code> <span class="math display">\[
+<h3 id="Running-Time-1"><a href="#Running-Time-1" class="headerlink" title="Running Time"></a>Running Time</h3><p><img src="https://user-images.githubusercontent.com/35764666/52516884-4c058b80-2c6d-11e9-960e-b282e0784f92.gif"></p>
+<p>证明分支算法的时间效率，一般利用递推式，和画出以上的<code>recursion tree</code>两种<br>似乎实质是一样的，只不过画出树来稍微直观一些（虽然递推明明也很直观啊）</p>
+<p>首先我们分析一下<code>Merge</code>函数的效率，很容易得到为$O(n)$<br>//具体分析过程只要数操作数就行了，因为<code>MERGE</code>函数并没有内部调用只有顺序执行</p>
+<p>分析完<code>Merge</code>函数，我们要开始分析整个<code>MergeSort</code></p>
+<script type="math/tex; mode=display">
 \begin{align*}
-T(n) &amp;= T(n/2)+T(n/2)+O(n)\\
-&amp;=2\cdot T(n/2)+O(n)
-\end{align*}
-\]</span></p>
-<p>由上面画出的这颗树也很容易看到，对于第t层而言，任务有<span class="math inline">\(2^t\)</span>个，每个规模为<span class="math inline">\(\frac{n}{2^t}​\)</span><br>
-那么对于单层而言，他们“自己做的活”(不包括交给子任务的) <span class="math display">\[
+T(n) &= T(n/2)+T(n/2)+O(n)\\
+&=2\cdot T(n/2)+O(n)
+\end{align*}</script><p>由上面画出的这颗树也很容易看到，对于第t层而言，任务有$2^t$个，每个规模为$\frac{n}{2^t}​$<br>那么对于单层而言，他们“自己做的活”(不包括交给子任务的)</p>
+<script type="math/tex; mode=display">
 \begin{align*}
-Work\ at\ Level\ i &amp;= (number\ of\ subproblems) \cdot (work\ per\ subproblem)\\
-&amp;= 2^i \cdot O(\frac{n}{2^i})\\
-&amp;=O(n)
-\end{align*}
-\]</span></p>
-<p>而层数共有<span class="math inline">\(\log_2{n}\)</span>层，于是很容易得到 <span class="math display">\[
+Work\ at\ Level\ i &= (number\ of\ subproblems) \cdot (work\ per\ subproblem)\\
+&= 2^i \cdot O(\frac{n}{2^i})\\
+&=O(n)
+\end{align*}</script><p>而层数共有$\log_2{n}$层，于是很容易得到</p>
+<script type="math/tex; mode=display">
 \begin{align*}
-Total\ Work &amp;= (Work\ per\ level)\cdot(number\ of\ levels) \\
-&amp;=O(n)\cdot \log_2(n)\\
-&amp;=O(n\log_2{n})
-\end{align*}
-\]</span> 于是我们得到了最终答案。</p>
-<p>实际上对于这类子问题规模相同的算法，我们可以用<code>master method</code>进行计算。<br>
-在这里实际上已经有了一些<code>master method</code>的影子，需要好好品味。</p>
-<h2 id="guiding-principle">Guiding Principle</h2>
-<p>对于算法的运行快慢的评估，我们究竟应该用什么指标去评价？这里会给出答案</p>
-<h3 id="worst-case-analysis">Worst-Case Analysis</h3>
-<p>既然是算法，自然要考虑最坏的情况，毕竟做好最坏的打算肯定是没错的（严肃脸）</p>
-<p>我们可以想象我们在进行一场对垒，对手希望用最恶心的数据打败我们 //让我们的算法跑的更慢 那么我们需要保证的是，哪怕他给出最恶心的数据，我也能hold住</p>
-<p>好吧说白了就是ACM里的抗hack...</p>
-<h3 id="asymptotic-analysis">Asymptotic Analysis</h3>
-<p>我们另一个关心的指标是渐近效率。用人话讲，就是当<span class="math inline">\(n\)</span>非常大的时候，它会以怎样的趋势增长。</p>
-<p>这实际上正是我们忽略常数的原因，因为我们当<span class="math inline">\(n\)</span>很大时它的增长趋势并不会怎么受常数影响。<br>
-当然！这不代表我们认为常数真的不重要，我们之所以在此忽略常数是因为 <blockquote class="blockquote-center">当我们用理论流程和伪代码去表示算法时，讨论常数其实是没有意义的。<br>因为你压根不知道常数是多少！这取决于你的机器和使用的语言等。</blockquote></p>
-<h3 id="asymtotic-notation">Asymtotic Notation</h3>
-<p>事实上渐近是一个数学概念，只是算法里用到比较多而已。<br>
-既然如此，我们不妨用数学符号定义一下这个概念。</p>
+Total\ Work &= (Work\ per\ level)\cdot(number\ of\ levels) \\
+&=O(n)\cdot \log_2(n)\\
+&=O(n\log_2{n})
+\end{align*}</script><p>于是我们得到了最终答案。</p>
+<p>实际上对于这类子问题规模相同的算法，我们可以用<code>master method</code>进行计算。<br>在这里实际上已经有了一些<code>master method</code>的影子，需要好好品味。</p>
+<h2 id="Guiding-Principle"><a href="#Guiding-Principle" class="headerlink" title="Guiding Principle"></a>Guiding Principle</h2><p>对于算法的运行快慢的评估，我们究竟应该用什么指标去评价？这里会给出答案</p>
+<h3 id="Worst-Case-Analysis"><a href="#Worst-Case-Analysis" class="headerlink" title="Worst-Case Analysis"></a>Worst-Case Analysis</h3><p>既然是算法，自然要考虑最坏的情况，毕竟做好最坏的打算肯定是没错的（严肃脸）</p>
+<p>我们可以想象我们在进行一场对垒，对手希望用最恶心的数据打败我们 //让我们的算法跑的更慢<br>那么我们需要保证的是，哪怕他给出最恶心的数据，我也能hold住</p>
+<p>好吧说白了就是ACM里的抗hack…</p>
+<h3 id="Asymptotic-Analysis"><a href="#Asymptotic-Analysis" class="headerlink" title="Asymptotic Analysis"></a>Asymptotic Analysis</h3><p>我们另一个关心的指标是渐近效率。用人话讲，就是当$n$非常大的时候，它会以怎样的趋势增长。</p>
+<p>这实际上正是我们忽略常数的原因，因为我们当$n$很大时它的增长趋势并不会怎么受常数影响。<br>当然！这不代表我们认为常数真的不重要，我们之所以在此忽略常数是因为<br><blockquote class="blockquote-center"><p>当我们用理论流程和伪代码去表示算法时，讨论常数其实是没有意义的。<br>因为你压根不知道常数是多少！这取决于你的机器和使用的语言等。</p>
+</blockquote></p>
+<h3 id="Asymtotic-Notation"><a href="#Asymtotic-Notation" class="headerlink" title="Asymtotic Notation"></a>Asymtotic Notation</h3><p>事实上渐近是一个数学概念，只是算法里用到比较多而已。<br>既然如此，我们不妨用数学符号定义一下这个概念。</p>
 <ul>
-<li><strong>&quot;Big-Oh&quot; Notation</strong> <span class="math display">\[
-T(n)=O(f(n)) \Leftrightarrow \exists c,n_0&gt;0.\ \forall n \ge n_0, 0\le T(n) \le c\cdot f(n)
-\]</span> 从表达式中不难看出，这个<span class="math inline">\(f(n)\)</span>代表<code>渐近上界</code></li>
-<li><strong>&quot;Big-Omega&quot; Notation</strong> <span class="math display">\[
-T(n)=\Omega(f(n)) \Leftrightarrow \exists c,n_0&gt;0.\ \forall n \ge n_0, 0\le c\cdot f(n) \le T(n)
-\]</span> 类似地，这个<span class="math inline">\(f(n)​\)</span>代表<code>渐近下界</code></li>
-<li><strong>&quot;Big-Theta&quot; Notation</strong> <span class="math display">\[
-T(n)=\Theta(f(n)) \Leftrightarrow \exists c_1,c_2,n_0&gt;0.\ \forall n \ge n_0, 0\le c_1f(n) \le T(n) \le c_2 f(n)
-\]</span> 当<span class="math inline">\(O(f(n))=\Omega(f(n))​\)</span>时，则称<span class="math inline">\(T(n)=\Theta(f(n))​\)</span> 当然，上面给出的这个表达其实也是等价的。</li>
+<li><strong>“Big-Oh” Notation</strong><script type="math/tex; mode=display">
+  T(n)=O(f(n)) \Leftrightarrow \exists c,n_0>0.\ \forall n \ge n_0, 0\le T(n) \le c\cdot f(n)</script>  从表达式中不难看出，这个$f(n)$代表<code>渐近上界</code></li>
+<li><strong>“Big-Omega” Notation</strong><script type="math/tex; mode=display">
+  T(n)=\Omega(f(n)) \Leftrightarrow \exists c,n_0>0.\ \forall n \ge n_0, 0\le c\cdot f(n) \le T(n)</script>  类似地，这个$f(n)​$代表<code>渐近下界</code></li>
+<li><strong>“Big-Theta” Notation</strong><script type="math/tex; mode=display">
+  T(n)=\Theta(f(n)) \Leftrightarrow \exists c_1,c_2,n_0>0.\ \forall n \ge n_0, 0\le c_1f(n) \le T(n) \le c_2 f(n)</script>  当$O(f(n))=\Omega(f(n))​$时，则称$T(n)=\Theta(f(n))​$<br>  当然，上面给出的这个表达其实也是等价的。</li>
 </ul>
-<p>最后给出一个比较直观的图，描述了 <span class="math inline">\(\Theta,\ \Omega,\ O​\)</span> 的关系</p>
+<p>最后给出一个比较直观的图，描述了 $\Theta,\ \Omega,\ O​$ 的关系</p>
 <p><img src="https://user-images.githubusercontent.com/35764666/52516894-4f991280-2c6d-11e9-9185-10dec36006d5.gif" width="100%"></p>
-<h2 id="algorithm-implementation">Algorithm Implementation</h2>
-<p>这里我们再顺便把几种sort算法用python实现一下<br>
-这里尤其要注意，MergeSort中的<code>哨兵</code>，对于边界条件的控制作用（卡死不让访问无效内存）</p>
+<h2 id="Algorithm-Implementation"><a href="#Algorithm-Implementation" class="headerlink" title="Algorithm Implementation"></a>Algorithm Implementation</h2><p>这里我们再顺便把几种sort算法用python实现一下<br>这里尤其要注意，MergeSort中的<code>哨兵</code>，对于边界条件的控制作用（卡死不让访问无效内存）</p>
 <ul>
 <li><code>BubbleSort</code></li>
 <li><code>InsertionSort</code></li>
@@ -951,7 +924,7 @@ T(n)=\Theta(f(n)) \Leftrightarrow \exists c_1,c_2,n_0&gt;0.\ \forall n \ge n_0, 
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#correctness-and-running-time"><span class="nav-number">1.</span> <span class="nav-text">Correctness and Running Time</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#insertionsort"><span class="nav-number">1.1.</span> <span class="nav-text">InsertionSort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#correctness"><span class="nav-number">1.1.1.</span> <span class="nav-text">Correctness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#running-time"><span class="nav-number">1.1.2.</span> <span class="nav-text">Running Time</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mergesort"><span class="nav-number">1.2.</span> <span class="nav-text">MergeSort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#correctness-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">Correctness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#running-time-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Running Time</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#guiding-principle"><span class="nav-number">1.3.</span> <span class="nav-text">Guiding Principle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#worst-case-analysis"><span class="nav-number">1.3.1.</span> <span class="nav-text">Worst-Case Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#asymptotic-analysis"><span class="nav-number">1.3.2.</span> <span class="nav-text">Asymptotic Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#asymtotic-notation"><span class="nav-number">1.3.3.</span> <span class="nav-text">Asymtotic Notation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#algorithm-implementation"><span class="nav-number">1.4.</span> <span class="nav-text">Algorithm Implementation</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Correctness-and-Running-Time"><span class="nav-number">1.</span> <span class="nav-text">Correctness and Running Time</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#InsertionSort"><span class="nav-number">1.1.</span> <span class="nav-text">InsertionSort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Correctness"><span class="nav-number">1.1.1.</span> <span class="nav-text">Correctness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Running-Time"><span class="nav-number">1.1.2.</span> <span class="nav-text">Running Time</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MergeSort"><span class="nav-number">1.2.</span> <span class="nav-text">MergeSort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Correctness-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">Correctness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Running-Time-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Running Time</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Guiding-Principle"><span class="nav-number">1.3.</span> <span class="nav-text">Guiding Principle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Worst-Case-Analysis"><span class="nav-number">1.3.1.</span> <span class="nav-text">Worst-Case Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asymptotic-Analysis"><span class="nav-number">1.3.2.</span> <span class="nav-text">Asymptotic Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asymtotic-Notation"><span class="nav-number">1.3.3.</span> <span class="nav-text">Asymtotic Notation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm-Implementation"><span class="nav-number">1.4.</span> <span class="nav-text">Algorithm Implementation</span></a></li></ol></li></ol></div>
             
 
           </div>
