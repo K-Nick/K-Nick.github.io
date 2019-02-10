@@ -148,7 +148,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52403381-8baf6480-2b01-11e9-89c6-b4c66f76bf78.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52403577-f6f93680-2b01-11e9-9b08-899cb8911aca.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52403900-c1088200-2b02-11e9-9ddf-437fdac0b673.png">
-<meta property="og:updated_time" content="2019-02-09T15:32:38.802Z">
+<meta property="og:updated_time" content="2019-02-10T18:07:54.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# ProblemSet1 Solution">
 <meta name="twitter:description" content="PoblemSet1 Finished            Solution 这里完成以下ProblemSet 1 对应章节大概是L1, L2">
@@ -493,7 +493,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-09 23:32:38" itemprop="dateModified" datetime="2019-02-09T23:32:38+08:00">2019-02-09</time>
+                <time title="修改时间：2019-02-11 02:07:54" itemprop="dateModified" datetime="2019-02-11T02:07:54+08:00">2019-02-11</time>
               
             
           </span>
@@ -568,7 +568,7 @@
 <h2 id="exercise">Exercise</h2>
 <ol start="0" style="list-style-type: decimal">
 <li><p>看完了...</p></li>
-<li><p>取<span class="math inline">\(n_0=5, c=8\)</span>,满足<span class="math inline">\(n&gt;n_0\)</span>时，<span class="math inline">\(2\sqrt{n}+6&lt;8\sqrt{n}\)</span></p></li>
+<li><p>取 <span class="math inline">\(n_0=5, c=8\)</span> ,满足<span class="math inline">\(n&gt;n_0\)</span>时，<span class="math inline">\(2\sqrt{n}+6&lt;8\sqrt{n}\)</span></p></li>
 </ol>
 <p><img src="https://user-images.githubusercontent.com/35764666/52403381-8baf6480-2b01-11e9-89c6-b4c66f76bf78.png"></p>
 <ol start="2" style="list-style-type: decimal">
@@ -576,24 +576,26 @@
 <p>B）取 <span class="math inline">\(n_0=20000, c=0.0001​\)</span> 。 原lst长度太小了，无法体现渐近，调整到了万级<br>
 <img src="https://user-images.githubusercontent.com/35764666/52403577-f6f93680-2b01-11e9-9b08-899cb8911aca.png"></p>
 <p>C） 通过绘图的最远两个点大概估计了一下斜率。据此可算出 <span class="math inline">\(n=10^{15}\)</span> 时大概需要花的时间 <img src="https://user-images.githubusercontent.com/35764666/52403900-c1088200-2b02-11e9-9ddf-437fdac0b673.png" width="90%" height="auto"></p></li>
-<li><p>a） <span class="math inline">\(T(n)=2\sqrt{n}+6,\ g(n)=\sqrt{n}​\)</span><br>
+<li><ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(T(n)=2\sqrt{n}+6,\ g(n)=\sqrt{n}​\)</span><br>
 取 <span class="math inline">\(n_0=2, c=8​\)</span>，显然满足<span class="math inline">\(\forall n&gt;2，2\sqrt{n}+6&lt;8\sqrt{n}​\)</span><br>
-<span class="math inline">\(\therefore 2\sqrt{n}+6=O(\sqrt n)​\)</span></p>
-<p>b）<span class="math inline">\(T(n)=n^2, \ g(n)=n\)</span><br>
+<span class="math inline">\(\therefore 2\sqrt{n}+6=O(\sqrt n)​\)</span></p></li>
+<li><p><span class="math inline">\(T(n)=n^2, \ g(n)=n\)</span><br>
 取 <span class="math inline">\(n_0=2, c=1\)</span>, 显然满足 <span class="math inline">\(\forall n&gt;2, 2n^2&gt;n\)</span><br>
-<span class="math inline">\(\therefore n^2=\Omega(n)\)</span></p>
-<p>c）<span class="math inline">\(T(n)=\log_2{n},\ g(n)=\ln(n)\)</span><br>
+<span class="math inline">\(\therefore n^2=\Omega(n)\)</span></p></li>
+<li><p><span class="math inline">\(T(n)=\log_2{n},\ g(n)=\ln(n)\)</span><br>
 取 <span class="math inline">\(n_0=1, c_1=\log_2(e-1),c_2=\log_2(e+1)\)</span> ，<br>
 显然满足<span class="math inline">\(\forall n&gt;1,\ \log_2(e-1)\ln{n}&lt;log_2n&lt;\log_2(e+1)\ln n\)</span><br>
-<span class="math inline">\(\therefore \log_2(n) = \Theta(\ln n)\)</span></p>
-<p>d）假设 <span class="math inline">\(4^n=O(2^n)​\)</span>，那么应该有 <span class="math inline">\(\forall n &gt;n_0, 4^n&lt;c2^n​\)</span>，也就是 <span class="math inline">\(c&gt;2^n​\)</span>。<br>
+<span class="math inline">\(\therefore \log_2(n) = \Theta(\ln n)\)</span></p></li>
+<li><p>假设 <span class="math inline">\(4^n=O(2^n)​\)</span>，那么应该有 <span class="math inline">\(\forall n &gt;n_0, 4^n&lt;c2^n​\)</span>，也就是 <span class="math inline">\(c&gt;2^n​\)</span>。<br>
 但是对于任一<span class="math inline">\(n_0​\)</span> ，满足这个条件的常数<span class="math inline">\(c​\)</span>都不存在<br>
 <span class="math inline">\(\therefore 4^n\neq O(2^n)​\)</span></p></li>
+</ol></li>
 </ol>
 <h2 id="problems">Problems</h2>
 <ol style="list-style-type: decimal">
 <li><p>(a)和(b)逻辑是没问题的，但是(c)是错的。(c) 最致命的一点是把<span class="math inline">\(O(1)\)</span> 次”操作“和<span class="math inline">\(O(1)\)</span> 的时间效率混淆。那按这么说，推到极端，所有程序都是<span class="math inline">\(O(1)\)</span> 的，因为他们只调用了一次main。</p></li>
-<li><p>题意简单而言就是有n只青蛙，有好蛙和坏蛙，让他们相互评价，一次评价叫一次”toad-to-toad comparison“(此处因政治因素不对toad做直译，下称互评)。最终要求通过 <span class="math inline">\(O(n)\)</span> 次互评判断所有好坏。</p>
+<li>题意简单而言就是有n只青蛙，有好蛙和坏蛙，让他们相互评价，一次评价叫一次”toad-to-toad comparison“(此处因政治因素不对toad做直译，下称互评)。最终要求通过 <span class="math inline">\(O(n)\)</span> 次互评判断所有好坏。<br>
 a）<span class="math inline">\(O(n^2)​\)</span> 的算法相当简单，对于任意一青蛙，让其与其他n-1只青蛙进行互评即可。
 <ul>
 <li>假设你是坏蛙，那么剩下至少一半的好蛙一定会说你是坏蛙。<br>
