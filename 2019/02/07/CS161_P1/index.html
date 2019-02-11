@@ -148,7 +148,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52403381-8baf6480-2b01-11e9-89c6-b4c66f76bf78.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52403577-f6f93680-2b01-11e9-9b08-899cb8911aca.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52403900-c1088200-2b02-11e9-9ddf-437fdac0b673.png">
-<meta property="og:updated_time" content="2019-02-11T04:37:42.532Z">
+<meta property="og:updated_time" content="2019-02-11T04:43:50.787Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# ProblemSet1 Solution">
 <meta name="twitter:description" content="PoblemSet1 Finished            Solution 这里完成以下ProblemSet 1 对应章节大概是L1, L2">
@@ -493,7 +493,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-11 12:37:42" itemprop="dateModified" datetime="2019-02-11T12:37:42+08:00">2019-02-11</time>
+                <time title="修改时间：2019-02-11 12:43:50" itemprop="dateModified" datetime="2019-02-11T12:43:50+08:00">2019-02-11</time>
               
             
           </span>
@@ -585,16 +585,17 @@ B）取 $n_0=20000, c=0.0001​$ 。 原lst长度太小了，无法体现渐近�
 </li>
 <li>
 <p>a) $T(n)=2\sqrt{n}+6,\ g(n)=\sqrt{n}​$<br>
-取 $n_0=2, c=8​$，显然满足$\forall n&gt;2，2\sqrt{n}+6&lt;8\sqrt{n}​$<br>
+取 $n_0=2, c=8​$，显然满足 $\forall n&gt;2，2\sqrt{n}+6&lt;8\sqrt{n}​$<br>
 $\therefore 2\sqrt{n}+6=O(\sqrt n)​$</p>
 <p>b) $T(n)=n^2, \ g(n)=n$<br>
 取 $n_0=2, c=1$, 显然满足 $\forall n&gt;2, 2n^2&gt;n$<br>
 $\therefore n^2=\Omega(n)$</p>
 <p>c) $T(n)=\log_2{n},\ g(n)=\ln(n)$<br>
-取 $n_0=1, c_1=\log_2(e-1),c_2=\log_2(e+1)$ ，<br>
+取 $n_0=1, c_1=\log_2(e-1),c_2=\log_2(e+1)$，<br>
 显然满足 $\forall n&gt;1,\ \log_2(e-1)\ln{n}&lt;log_2n&lt;\log_2(e+1)\ln n$<br>
 $\therefore \log_2(n) = \Theta(\ln n)$</p>
-<p>d) 假设 $4<sup>n=O(2</sup>n)​$，那么应该有 $\forall n &gt;n_0, 4<sup>n&lt;c2</sup>n​$，也就是 $c&gt;2^n​$。<br>
+<p>d) 假设 $4<sup>n=O(2</sup>n)​$，<br>
+那么应有 $\forall n &gt;n_0, 4<sup>n&lt;c2</sup>n​$，也就是 $c&gt;2^n​$。<br>
 但是对于任一$n_0​$ ，满足这个条件的常数$c​$都不存在<br>
 $\therefore 4^n\neq O(2^n)​$</p>
 </li>
