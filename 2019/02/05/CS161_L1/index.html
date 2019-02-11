@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="Nick Studio">
 <meta property="og:description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multiplicatio">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-11T04:41:48.489Z">
+<meta property="og:updated_time" content="2019-02-11T08:08:52.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Do you know how to multiply integers?">
 <meta name="twitter:description" content="对应CS161的Lecture 1            Method to multiply integers 我天真的以为L1不会有什么东西的，看了一眼居然出了overview还真有东西，特此补上。 这一节大概讲了那么两个东西  Graduate-School Integer Multiplication Karatsuba Integer Multiplicatio">
@@ -489,7 +489,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-11 12:41:48" itemprop="dateModified" datetime="2019-02-11T12:41:48+08:00">2019-02-11</time>
+                <time title="修改时间：2019-02-11 16:08:52" itemprop="dateModified" datetime="2019-02-11T16:08:52+08:00">2019-02-11</time>
               
             
           </span>
@@ -564,9 +564,9 @@
 <li>Graduate-School Integer Multiplication</li>
 <li>Karatsuba Integer Multiplication</li>
 </ul>
-<p>//别问我这名字为什么这么鬼畜</p>
+<p>//别问我这名字为什么这么鬼畜😳</p>
 <a id="more"></a>
-<h2 id="graduate-school-integer-multiplication"><a class="header-anchor" href="#graduate-school-integer-multiplication">¶</a>Graduate-School Integer Multiplication</h2>
+<h2 id="graduate-school-integer-multiplication">Graduate-School Integer Multiplication</h2>
 <p>不分析了…就是从小做到大的竖式进位乘法<br>
 真的有什么要说的话，这节课里提到了一个看上去很Tricky的方法</p>
 <p>把数字各自分块成两块:<br>
@@ -579,7 +579,7 @@ $$<br>
 T(n)=4T(n/2)+O(n)<br>
 $$<br>
 在后面利用<code>Master Method</code>进行分析的结果，容易得到$T(n)=O(n^2)$</p>
-<h2 id="karatsuba-integer-multiplication"><a class="header-anchor" href="#karatsuba-integer-multiplication">¶</a>Karatsuba Integer Multiplication</h2>
+<h2 id="karatsuba-integer-multiplication">Karatsuba Integer Multiplication</h2>
 <p>事实上，在这里虽然$x*y$已经是一个&quot;Information efficient&quot;的表示，但并不意味着它&quot;Computation efficient&quot;<br>
 既然乘法对于我们而言是一个代价较大的操作，那么我们能不能尽量考虑减少乘法。（哪怕增多加减法）<br>
 $$<br>
@@ -855,7 +855,7 @@ $$<br>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Method to multiply integers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#graduate-school-integer-multiplication"><span class="nav-number">1.1.</span> <span class="nav-text">¶Graduate-School Integer Multiplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#karatsuba-integer-multiplication"><span class="nav-number">1.2.</span> <span class="nav-text">¶Karatsuba Integer Multiplication</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Method to multiply integers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#graduate-school-integer-multiplication"><span class="nav-text">Graduate-School Integer Multiplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#karatsuba-integer-multiplication"><span class="nav-text">Karatsuba Integer Multiplication</span></a></li></ol></li></ol></div>
             
 
           </div>
