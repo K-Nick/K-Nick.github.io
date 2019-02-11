@@ -565,18 +565,9 @@
 <p>//别问我这名字为什么这么鬼畜</p>
 <a id="more"></a>
 <h2 id="Graduate-School-Integer-Multiplication"><a href="#Graduate-School-Integer-Multiplication" class="headerlink" title="Graduate-School Integer Multiplication"></a>Graduate-School Integer Multiplication</h2><p>不分析了…就是从小做到大的竖式进位乘法<br>真的有什么要说的话，这节课里提到了一个看上去很Tricky的方法</p>
-<p>把数字各自分块成两块:</p>
-<script type="math/tex; mode=display">
-x=10^{n/2}+b,\ y=10^{n/2}+d\\
-x*y =10^nac+10^{n/2}(ad+bc)+bd</script><p>但是事实上，在这里如果我们分别对$ac,\ ad, \ bc, \ bd$进行计算，那么实际效率并没有提升</p>
-<script type="math/tex; mode=display">
-T(n)=4T(n/2)+O(n)</script><p>在后面利用<code>Master Method</code>进行分析的结果，容易得到$T(n)=O(n^2)$</p>
-<h2 id="Karatsuba-Integer-Multiplication"><a href="#Karatsuba-Integer-Multiplication" class="headerlink" title="Karatsuba Integer Multiplication"></a>Karatsuba Integer Multiplication</h2><p>事实上，在这里虽然$x*y$已经是一个”Information efficient”的表示，但并不意味着它”Computation efficient”<br>既然乘法对于我们而言是一个代价较大的操作，那么我们能不能尽量考虑减少乘法。（哪怕增多加减法）</p>
-<script type="math/tex; mode=display">
-ad+bc=(a+b)(c+d)-ac-bd</script><p>似乎有一些神奇的事情发生了，原本两次乘法的操作似乎现在用一次就可以完成了呢！</p>
-<p>于是原本$T(n) $，也就是<code>Worst Running Time</code>，的递推式似乎也发生了变化！</p>
-<script type="math/tex; mode=display">
-T(n)=3T(n/2)+O(n)</script><p>我们再次利用<code>Master Method</code>，得到的新的结果$T(n)=O(n^{\log_2{3}})\approx O(n^{1.6})$</p>
+<p>把数字各自分块成两块:<br>$$<br>x=10^{n/2}+b, y=10^{n/2}+d\\<br>x*y =10^nac+10^{n/2}(ad+bc)+bd<br>$$<br>但是事实上，在这里如果我们分别对$ac, ad,  bc,  bd$进行计算，那么实际效率并没有提升<br>$$<br>T(n)=4T(n/2)+O(n)<br>$$<br>在后面利用<code>Master Method</code>进行分析的结果，容易得到$T(n)=O(n^2)$</p>
+<h2 id="Karatsuba-Integer-Multiplication"><a href="#Karatsuba-Integer-Multiplication" class="headerlink" title="Karatsuba Integer Multiplication"></a>Karatsuba Integer Multiplication</h2><p>事实上，在这里虽然$x*y$已经是一个”Information efficient”的表示，但并不意味着它”Computation efficient”<br>既然乘法对于我们而言是一个代价较大的操作，那么我们能不能尽量考虑减少乘法。（哪怕增多加减法）<br>$$<br>ad+bc=(a+b)(c+d)-ac-bd<br>$$<br>似乎有一些神奇的事情发生了，原本两次乘法的操作似乎现在用一次就可以完成了呢！</p>
+<p>于是原本$T(n) $，也就是<code>Worst Running Time</code>，的递推式似乎也发生了变化！<br>$$<br>T(n)=3T(n/2)+O(n)<br>$$<br>我们再次利用<code>Master Method</code>，得到的新的结果$T(n)=O(n^{\log_2{3}})\approx O(n^{1.6})$</p>
 <blockquote class="blockquote-center"><p>似乎的确是个略优的算法呢！</p>
 </blockquote>
 <p>然后我动手实现了一下这个诡异的算法</p>

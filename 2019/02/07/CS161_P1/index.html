@@ -564,22 +564,22 @@
 <h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>这里完成以下ProblemSet 1</p>
 <p>对应章节大概是L1, L2</p>
  <a id="more"></a>
-<h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><ol>
+<h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><ol start="0">
 <li><p>看完了…</p>
 </li>
 <li><p>取 $n_0=5, c=8$ ,满足$n&gt;n_0$时，$2\sqrt{n}+6&lt;8\sqrt{n}$</p>
 </li>
 </ol>
 <p><img src="https://user-images.githubusercontent.com/35764666/52403381-8baf6480-2b01-11e9-89c6-b4c66f76bf78.png"></p>
-<ol>
+<ol start="2">
 <li><p>A）显然是 $O(n)​$。for循环总共n次，每次进行判断（以及一次赋值），但常数不重要，所以1op和2op不区分 </p>
 <p> B）取 $n_0=20000, c=0.0001​$ 。 原lst长度太小了，无法体现渐近，调整到了万级<br> <img src="https://user-images.githubusercontent.com/35764666/52403577-f6f93680-2b01-11e9-9b08-899cb8911aca.png">  </p>
 <p> C） 通过绘图的最远两个点大概估计了一下斜率。据此可算出 $n=10^{15}$ 时大概需要花的时间<br> <img src="https://user-images.githubusercontent.com/35764666/52403900-c1088200-2b02-11e9-9ddf-437fdac0b673.png" width="90%" height="auto"></p>
 </li>
-<li><p>a) $T(n)=2\sqrt{n}+6,\ g(n)=\sqrt{n}​$<br> 取 $n_0=2, c=8​$，显然满足$\forall n&gt;2，2\sqrt{n}+6&lt;8\sqrt{n}​$<br> $\therefore 2\sqrt{n}+6=O(\sqrt n)​$</p>
-<p> b) $T(n)=n^2, \ g(n)=n$<br> 取 $n_0=2, c=1$, 显然满足 $\forall n&gt;2, 2n^2&gt;n$<br> $\therefore n^2=\Omega(n)$</p>
-<p> c) $T(n)=\log_2{n},\ g(n)=\ln(n)$<br> 取 $n_0=1, c_1=\log_2(e-1),c_2=\log_2(e+1)$ ，<br> 显然满足$\forall n&gt;1,\ \log_2(e-1)\ln{n}&lt;log_2n&lt;\log_2(e+1)\ln n$<br> $\therefore \log_2(n) = \Theta(\ln n)$</p>
-<p> d) 假设 $4^n=O(2^n)​$，那么应该有 $\forall n &gt;n_0, 4^n<c2^n​$，也就是 $c="">2^n​$。<br> 但是对于任一$n_0​$ ，满足这个条件的常数$c​$都不存在<br> $\therefore 4^n\neq O(2^n)​$</c2^n​$，也就是></p>
+<li><p>a) $T(n)=2\sqrt{n}+6, g(n)=\sqrt{n}​$<br> 取 $n_0=2, c=8​$，显然满足$\forall n&gt;2，2\sqrt{n}+6&lt;8\sqrt{n}​$<br> $\therefore 2\sqrt{n}+6=O(\sqrt n)​$</p>
+<p> b) $T(n)=n^2,  g(n)=n$<br> 取 $n_0=2, c=1$, 显然满足 $\forall n&gt;2, 2n^2&gt;n$<br> $\therefore n^2=\Omega(n)$</p>
+<p> c) $T(n)=\log_2{n}, g(n)=\ln(n)$<br> 取 $n_0=1, c_1=\log_2(e-1),c_2=\log_2(e+1)$ ，<br> 显然满足$\forall n&gt;1, \log_2(e-1)\ln{n}&lt;log_2n&lt;\log_2(e+1)\ln n$<br> $\therefore \log_2(n) = \Theta(\ln n)$</p>
+<p> d) 假设 $4^n=O(2^n)​$，那么应该有 $\forall n &gt;n_0, 4^n&lt;c2^n​$，也就是 $c&gt;2^n​$。<br> 但是对于任一$n_0​$ ，满足这个条件的常数$c​$都不存在<br> $\therefore 4^n\neq O(2^n)​$</p>
 </li>
 </ol>
 <h2 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h2><ol>
@@ -607,9 +607,8 @@
 </li>
 <li><p><strong>Base Case</strong>: $k=0$ ，按照原题意，好蛙显然过半  </p>
 </li>
-<li><p><strong>Indective Step</strong>: 由downsize函数在n为奇数与偶数两种情况下的讨论，充其量m在全程均为奇数。</p>
-<script type="math/tex; mode=display">
-  {2^k}+\frac{1}{2^k}+...+\frac{1}{2}<\frac{n}{2^k}+1</script></li>
+<li><p><strong>Indective Step</strong>: 由downsize函数在n为奇数与偶数两种情况下的讨论，充其量m在全程均为奇数。<br>  $$<br>  {2^k}+\frac{1}{2^k}+…+\frac{1}{2}&lt;\frac{n}{2^k}+1<br>  $$</p>
+</li>
 <li><p><strong>Conclusion</strong>: 当达到 $m=1​$ 时，由于size为奇数时严格过半，好蛙的个数至少为$\lceil1/2\rceil=1​$ ，必为好蛙</p>
 <p>f）每一次downsize的效率为 $O(m_k)$, 而 $m_k\le\frac{n}{2_k}+1$，<br>$\therefore O(n)+O(m_1)+O(m_2)…+O(1)=O(n)$。</p>
 <p>g）你找到一个好蛙…让它在判断一遍所有蛙不就好了？反正它永远说真话啊！<br>最后一次扫描，也就 $O(n)$ ，加上之前的 $O(n)$，还是 $O(n)$</p>

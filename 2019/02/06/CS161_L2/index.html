@@ -590,14 +590,11 @@
 <ul>
 <li><strong>Inductive Hypothesis:</strong> 在第$i=n$次循环之后，$A[:n+1]$有序</li>
 <li><strong>Base case:</strong> 第$i=0$循环后(也就是$i=1$开始前)，$A[:1]$只有1个，显然有序</li>
-<li><strong>Inductive step:</strong> 假如现在第$i-1$次循环结束，$A[:i]$有序；那么在经过第$i$次循环的插入操作后（内部$j$循环），$A[:i+1]$如下<script type="math/tex; mode=display">
-  A[0],A[1],\dots,A[j^*],\dots,A[i-1],A[i]</script>  其中$A[j^*]$ 以左均为小于它的元素，以右均为大于它的元素，且左右各自相对有序，则显然现在经过了第$i$次循环，$A[:i+1]$整体有序</li>
+<li><strong>Inductive step:</strong> 假如现在第$i-1$次循环结束，$A[:i]$有序；那么在经过第$i$次循环的插入操作后（内部$j$循环），$A[:i+1]$如下<br>  $$<br>  A[0],A[1],\dots,A[j^<em>],\dots,A[i-1],A[i]<br>  $$<br>  其中$A[j^</em>]$ 以左均为小于它的元素，以右均为大于它的元素，且左右各自相对有序，则显然现在经过了第$i$次循环，$A[:i+1]$整体有序</li>
 <li><strong>Conclusion</strong>: 当循环终止时，也就是第$len(A)-1$次循环后，$A[:len(A)]$有序，目标达成 </li>
 </ul>
 <p>至此我们的算法证明完毕。<br>在这里我们可以获得的一点感悟是，读懂循环的所谓目的，其实流程无非是找到<code>Inductive Hypothesis</code>，并且让<code>Conclusion</code>能够为我们的实现目标。</p>
-<h3 id="Running-Time"><a href="#Running-Time" class="headerlink" title="Running Time"></a>Running Time</h3><p>这里我们不难看到，若序列长为$n$，外层循环$n$次，而内层$j$最多循环$i$次，那么精确一些的结果是</p>
-<script type="math/tex; mode=display">
-1+2+\dots+n=\frac{n(n+1)}{2}</script><p>但是实际上我们并不care这个常数，因此其实是直接当做$n^2$来看。至于原因，后面会提。</p>
+<h3 id="Running-Time"><a href="#Running-Time" class="headerlink" title="Running Time"></a>Running Time</h3><p>这里我们不难看到，若序列长为$n$，外层循环$n$次，而内层$j$最多循环$i$次，那么精确一些的结果是<br>$$<br>1+2+\dots+n=\frac{n(n+1)}{2}<br>$$<br>但是实际上我们并不care这个常数，因此其实是直接当做$n^2$来看。至于原因，后面会提。</p>
 <h2 id="MergeSort"><a href="#MergeSort" class="headerlink" title="MergeSort"></a>MergeSort</h2><p><img src="https://user-images.githubusercontent.com/35764666/52516883-4c058b80-2c6d-11e9-8ac2-4812fc2040e5.gif" width="50%" style="display: inline-block; vertical-align: text-top; border: 1px solid #fff"><img src="https://user-images.githubusercontent.com/35764666/52516886-4d36b880-2c6d-11e9-9a4d-a9ef0fa4e918.gif" width="50%" style="display: inline-block; vertical-align: text-top; border: 1px solid #fff"></p>
 <blockquote>
 <p>绿色处为哨兵！</p>
@@ -618,24 +615,9 @@
 <h3 id="Running-Time-1"><a href="#Running-Time-1" class="headerlink" title="Running Time"></a>Running Time</h3><p><img src="https://user-images.githubusercontent.com/35764666/52516884-4c058b80-2c6d-11e9-960e-b282e0784f92.gif"></p>
 <p>证明分支算法的时间效率，一般利用递推式，和画出以上的<code>recursion tree</code>两种<br>似乎实质是一样的，只不过画出树来稍微直观一些（虽然递推明明也很直观啊）</p>
 <p>首先我们分析一下<code>Merge</code>函数的效率，很容易得到为$O(n)$<br>//具体分析过程只要数操作数就行了，因为<code>MERGE</code>函数并没有内部调用只有顺序执行</p>
-<p>分析完<code>Merge</code>函数，我们要开始分析整个<code>MergeSort</code></p>
-<script type="math/tex; mode=display">
-\begin{align*}
-T(n) &= T(n/2)+T(n/2)+O(n)\\
-&=2\cdot T(n/2)+O(n)
-\end{align*}</script><p>由上面画出的这颗树也很容易看到，对于第t层而言，任务有$2^t$个，每个规模为$\frac{n}{2^t}​$<br>那么对于单层而言，他们“自己做的活”(不包括交给子任务的)</p>
-<script type="math/tex; mode=display">
-\begin{align*}
-Work\ at\ Level\ i &= (number\ of\ subproblems) \cdot (work\ per\ subproblem)\\
-&= 2^i \cdot O(\frac{n}{2^i})\\
-&=O(n)
-\end{align*}</script><p>而层数共有$\log_2{n}$层，于是很容易得到</p>
-<script type="math/tex; mode=display">
-\begin{align*}
-Total\ Work &= (Work\ per\ level)\cdot(number\ of\ levels) \\
-&=O(n)\cdot \log_2(n)\\
-&=O(n\log_2{n})
-\end{align*}</script><p>于是我们得到了最终答案。</p>
+<p>分析完<code>Merge</code>函数，我们要开始分析整个<code>MergeSort</code><br>$$<br>\begin{align<em>}<br>T(n) &amp;= T(n/2)+T(n/2)+O(n)\\<br>&amp;=2\cdot T(n/2)+O(n)<br>\end{align</em>}<br>$$</p>
+<p>由上面画出的这颗树也很容易看到，对于第t层而言，任务有$2^t$个，每个规模为$\frac{n}{2^t}​$<br>那么对于单层而言，他们“自己做的活”(不包括交给子任务的)<br>$$<br>\begin{align<em>}<br>Work at Level i &amp;= (number of subproblems) \cdot (work per subproblem)\\<br>&amp;= 2^i \cdot O(\frac{n}{2^i})\\<br>&amp;=O(n)<br>\end{align</em>}<br>$$</p>
+<p>而层数共有$\log_2{n}$层，于是很容易得到<br>$$<br>\begin{align<em>}<br>Total Work &amp;= (Work per level)\cdot(number of levels) \\<br>&amp;=O(n)\cdot \log_2(n)\\<br>&amp;=O(n\log_2{n})<br>\end{align</em>}<br>$$<br>于是我们得到了最终答案。</p>
 <p>实际上对于这类子问题规模相同的算法，我们可以用<code>master method</code>进行计算。<br>在这里实际上已经有了一些<code>master method</code>的影子，需要好好品味。</p>
 <h2 id="Guiding-Principle"><a href="#Guiding-Principle" class="headerlink" title="Guiding Principle"></a>Guiding Principle</h2><p>对于算法的运行快慢的评估，我们究竟应该用什么指标去评价？这里会给出答案</p>
 <h3 id="Worst-Case-Analysis"><a href="#Worst-Case-Analysis" class="headerlink" title="Worst-Case Analysis"></a>Worst-Case Analysis</h3><p>既然是算法，自然要考虑最坏的情况，毕竟做好最坏的打算肯定是没错的（严肃脸）</p>
@@ -646,14 +628,11 @@ Total\ Work &= (Work\ per\ level)\cdot(number\ of\ levels) \\
 </blockquote></p>
 <h3 id="Asymtotic-Notation"><a href="#Asymtotic-Notation" class="headerlink" title="Asymtotic Notation"></a>Asymtotic Notation</h3><p>事实上渐近是一个数学概念，只是算法里用到比较多而已。<br>既然如此，我们不妨用数学符号定义一下这个概念。</p>
 <ul>
-<li><strong>“Big-Oh” Notation</strong><script type="math/tex; mode=display">
-  T(n)=O(f(n)) \Leftrightarrow \exists c,n_0>0.\ \forall n \ge n_0, 0\le T(n) \le c\cdot f(n)</script>  从表达式中不难看出，这个$f(n)$代表<code>渐近上界</code></li>
-<li><strong>“Big-Omega” Notation</strong><script type="math/tex; mode=display">
-  T(n)=\Omega(f(n)) \Leftrightarrow \exists c,n_0>0.\ \forall n \ge n_0, 0\le c\cdot f(n) \le T(n)</script>  类似地，这个$f(n)​$代表<code>渐近下界</code></li>
-<li><strong>“Big-Theta” Notation</strong><script type="math/tex; mode=display">
-  T(n)=\Theta(f(n)) \Leftrightarrow \exists c_1,c_2,n_0>0.\ \forall n \ge n_0, 0\le c_1f(n) \le T(n) \le c_2 f(n)</script>  当$O(f(n))=\Omega(f(n))​$时，则称$T(n)=\Theta(f(n))​$<br>  当然，上面给出的这个表达其实也是等价的。</li>
+<li><strong>“Big-Oh” Notation</strong><br>  $$<br>  T(n)=O(f(n)) \Leftrightarrow \exists c,n_0&gt;0. \forall n \ge n_0, 0\le T(n) \le c\cdot f(n)<br>  $$<br>  从表达式中不难看出，这个$f(n)$代表<code>渐近上界</code></li>
+<li><strong>“Big-Omega” Notation</strong><br>  $$<br>  T(n)=\Omega(f(n)) \Leftrightarrow \exists c,n_0&gt;0. \forall n \ge n_0, 0\le c\cdot f(n) \le T(n)<br>  $$<br>  类似地，这个$f(n)​$代表<code>渐近下界</code></li>
+<li><strong>“Big-Theta” Notation</strong><br>  $$<br>  T(n)=\Theta(f(n)) \Leftrightarrow \exists c_1,c_2,n_0&gt;0. \forall n \ge n_0, 0\le c_1f(n) \le T(n) \le c_2 f(n)<br>  $$<br>  当$O(f(n))=\Omega(f(n))​$时，则称$T(n)=\Theta(f(n))​$<br>  当然，上面给出的这个表达其实也是等价的。</li>
 </ul>
-<p>最后给出一个比较直观的图，描述了 $\Theta,\ \Omega,\ O​$ 的关系</p>
+<p>最后给出一个比较直观的图，描述了 $\Theta, \Omega, O​$ 的关系</p>
 <p><img src="https://user-images.githubusercontent.com/35764666/52516894-4f991280-2c6d-11e9-9185-10dec36006d5.gif" width="100%"></p>
 <h2 id="Algorithm-Implementation"><a href="#Algorithm-Implementation" class="headerlink" title="Algorithm Implementation"></a>Algorithm Implementation</h2><p>这里我们再顺便把几种sort算法用python实现一下<br>这里尤其要注意，MergeSort中的<code>哨兵</code>，对于边界条件的控制作用（卡死不让访问无效内存）</p>
 <ul>
