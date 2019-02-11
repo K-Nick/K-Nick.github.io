@@ -148,7 +148,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52403381-8baf6480-2b01-11e9-89c6-b4c66f76bf78.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52403577-f6f93680-2b01-11e9-9b08-899cb8911aca.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52403900-c1088200-2b02-11e9-9ddf-437fdac0b673.png">
-<meta property="og:updated_time" content="2019-02-11T07:31:40.912Z">
+<meta property="og:updated_time" content="2019-02-11T07:45:07.399Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# ProblemSet1 Solution">
 <meta name="twitter:description" content="PoblemSet1 Finished            Solution 这里完成以下ProblemSet 1 对应章节大概是L1, L2">
@@ -493,7 +493,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-11 15:31:40" itemprop="dateModified" datetime="2019-02-11T15:31:40+08:00">2019-02-11</time>
+                <time title="修改时间：2019-02-11 15:45:07" itemprop="dateModified" datetime="2019-02-11T15:45:07+08:00">2019-02-11</time>
               
             
           </span>
@@ -571,14 +571,12 @@
 <p>看完了…</p>
 </li>
 <li>
-<p>取 $n_0=5, c=8$ ,满足$n&gt;n_0$时，$2\sqrt{n}+6&lt;8\sqrt{n}$</p>
+<p>取 $n_0=5, c=8$ ,满足$n&gt;n_0$时，$2\sqrt{n}+6&lt;8\sqrt{n}$<br>
+<img src="https://user-images.githubusercontent.com/35764666/52403381-8baf6480-2b01-11e9-89c6-b4c66f76bf78.png"></p>
 </li>
-</ol>
-<img src="https://user-images.githubusercontent.com/35764666/52403381-8baf6480-2b01-11e9-89c6-b4c66f76bf78.png">
-<ol start="2">
 <li>
-<p>A) 显然是 $O(n)​$。for循环总共n次，每次进行判断（以及一次赋值），但常数不重要，所以1op和2op不区分<br>
-B) 取 $n_0=20000, c=0.0001​$ 。 原lst长度太小了，无法体现渐近，调整到了万级<br>
+<p>A) 显然是 $O(n)​$。for循环总共n次，每次进行判断（以及一次赋值），但常数不重要，所以1op和2op不区分</p>
+<p>B) 取 $n_0=20000, c=0.0001​$ 。 原lst长度太小了，无法体现渐近，调整到了万级<br>
 <img src="https://user-images.githubusercontent.com/35764666/52403577-f6f93680-2b01-11e9-9b08-899cb8911aca.png"></p>
 <p>C) 通过绘图的最远两个点大概估计了一下斜率。据此可算出 $n=10^{15}$ 时大概需要花的时间<br>
 <img src="https://user-images.githubusercontent.com/35764666/52403900-c1088200-2b02-11e9-9ddf-437fdac0b673.png" width="90%" height="auto"></p>
@@ -591,11 +589,11 @@ $\therefore 2\sqrt{n}+6=O(\sqrt n)​$</p>
 取 $n_0=2, c=1$, 显然满足 $\forall n&gt;2, 2n^2&gt;n$<br>
 $\therefore n^2=\Omega(n)$</p>
 <p>c) $T(n)=\log_2{n},\ g(n)=\ln(n)$<br>
-取 $n_0=1, c_1=\log_2(e-1),c_2=\log_2(e+1)$，<br>
+取 $n_0=1, c_1=\log_2(e-1),c_2=\log_2(e+1)$ ,<br>
 显然满足 $\forall n&gt;1,\ \log_2(e-1)\ln{n}&lt;log_2n&lt;\log_2(e+1)\ln n$<br>
 $\therefore \log_2(n) = \Theta(\ln n)$</p>
-<p>d) 假设 $4<sup>n=O(2</sup>n)​$，<br>
-那么应有 $\forall n &gt;n_0, 4<sup>n&lt;c2</sup>n​$，也就是 $c&gt;2^n​$。<br>
+<p>d) 假设 $4<sup>n=O(2</sup>n)​$<br>
+那么应有 $\forall n &gt;n_0, 4<sup>n&lt;c2</sup>n​$ ,也就是 $c&gt;2^n​$<br>
 但是对于任一$n_0​$ ，满足这个条件的常数$c​$都不存在<br>
 $\therefore 4^n\neq O(2^n)​$</p>
 </li>
@@ -603,7 +601,7 @@ $\therefore 4^n\neq O(2^n)​$</p>
 <h2 id="problems"><a class="header-anchor" href="#problems">¶</a>Problems</h2>
 <ol>
 <li>
-<p>(a)和(b)逻辑是没问题的，但是©是错的。© 最致命的一点是把$O(1)$ 次”操作“和$O(1)$ 的时间效率混淆。那按这么说，推到极端，所有程序都是$O(1)$ 的，因为他们只调用了一次main。</p>
+<p>(a)和(b)逻辑是没问题的，但是©是错的。© 最致命的一点是把$O(1)$ 次&quot;操作&quot;和$O(1)$ 的时间效率混淆。那按这么说，推到极端，所有程序都是$O(1)$ 的，因为他们只调用了一次main。</p>
 </li>
 <li>
 <p>题意简单而言，这题就是有n只青蛙，有好蛙和坏蛙，让他们相互评价，一次评价叫一次”toad-to-toad comparison“(此处因政治因素不对toad做直译，下称互评)。最终要求通过 $O(n)$ 次互评判断所有好坏。<br>
@@ -676,9 +674,9 @@ $$</p>
 </li>
 </ul>
 <p>f）每一次downsize的效率为 $O(m_k)$, 而 $m_k\le\frac{n}{2_k}+1$，<br>
-$\therefore O(n)+O(m_1)+O(m_2)…+O(1)=O(n)$。</p>
+$\therefore O(n)+O(m_1)+O(m_2)…+O(1)=O(n)$</p>
 <p>g）你找到一个好蛙…让它在判断一遍所有蛙不就好了？反正它永远说真话啊！<br>
-最后一次扫描，也就 $O(n)$ ，加上之前的 $O(n)$，还是 $O(n)$</p>
+最后一次扫描，也就 $O(n)$ ，加上之前的 $O(n)$ ，还是 $O(n)$</p>
 <p>​</p>
 </li>
 </ol>
