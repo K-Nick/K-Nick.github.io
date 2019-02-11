@@ -152,7 +152,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52516884-4c058b80-2c6d-11e9-960e-b282e0784f92.gif">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52516894-4f991280-2c6d-11e9-9185-10dec36006d5.gif">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52318650-6686fd00-2a00-11e9-9b2a-8dd4087b3fcd.png">
-<meta property="og:updated_time" content="2019-02-11T08:22:21.816Z">
+<meta property="og:updated_time" content="2019-02-11T08:26:30.763Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Devide-and-conquer, Mergesort, and Big-O notation">
 <meta name="twitter:description" content="对应CS161的Lecture2            Correctness and Running Time 算法中最关键的是两个问题  Correctness       //Does it work? Running Time   //How fast?  今天要讲的正是这两个问题，引入loop invariant这个概念 //这个概念非常重要，是证明算法正确性的">
@@ -497,7 +497,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-11 16:22:21" itemprop="dateModified" datetime="2019-02-11T16:22:21+08:00">2019-02-11</time>
+                <time title="修改时间：2019-02-11 16:26:30" itemprop="dateModified" datetime="2019-02-11T16:26:30+08:00">2019-02-11</time>
               
             
           </span>
@@ -631,23 +631,21 @@ $$<br>
 <ul>
 <li><strong>Inductive Hypothesis:</strong> (1)在第$k$次循环后，$A[p:(k+1)]$ 有序  (2)$i,j$ 指向对应组中最小的元素。</li>
 <li><strong>Base case:</strong> 当$k=p-1$时，$A[p:p]$ 为空集，(1)显然成立。i=j=1,显然也符合(2)</li>
-<li><strong>Inductive step:</strong> 假如现在第$k-1$ 次循环后，$A[p:k]$ 有序,且$L[i]$ 和$R[j]$ 最小。则经过第$k$ 次循环后，$L[i]$ 与$R[j]$ 取较大值加入$A[k]$，不妨假设现在取得是$L[i]$，那么经过$i+=1$ 之后，显然$L[i]$ 仍是L剩下中最小，R中情况不变，因此显然(2)成立；而$A[:k+1]$ 在$A[:k]$ 有序的基础上，满足$A[:k]$ 所有元素均小于$A[k]$，且$A[:k]$ 内部有序，$A[k+1]$ 显然有序。</li>
-<li><strong>Conclusion:</strong> 当$k=r$循环完成时,$A[p:(r+1)]$ 有序，达成目标。</li>
+<li><strong>Inductive step:</strong> 假如现在第 $k-1$ 次循环后，$A[p:k]$ 有序,且 $L[i]$ 和 $R[j]$  最小。则经过第 $k$ 次循环后，$L[i]$ 与 $R[j]$ 取较大值加入 $A[k]$ ,不妨假设现在取得是$L[i]$ ,那么经过 $i+=1$ 之后，显然 $L[i]$ 仍是 $L$ 剩下中最小，$R$ 中情况不变，因此显然(2)成立；而 $A[:k+1]$ 在 $A[:k]$ 有序的基础上，满足 $A[:k]$ 所有元素均小于 $A[k]$ ,且 $A[:k]$ 内部有序，$A[k+1]$ 显然有序。</li>
+<li><strong>Conclusion:</strong> 当 $k=r$ 循环完成时, $A[p:(r+1)]$ 有序，达成目标。</li>
 </ul>
 <h3 id="running-time-v2"><a class="header-anchor" href="#running-time-v2">¶</a>Running Time</h3>
 <img src="https://user-images.githubusercontent.com/35764666/52516884-4c058b80-2c6d-11e9-960e-b282e0784f92.gif">
 <p>证明分支算法的时间效率，一般利用递推式，和画出以上的<code>recursion tree</code>两种<br>
 似乎实质是一样的，只不过画出树来稍微直观一些（虽然递推明明也很直观啊）</p>
-<p>首先我们分析一下<code>Merge</code>函数的效率，很容易得到为$O(n)$<br>
+<p>首先我们分析一下<code>Merge</code>函数的效率，很容易得到为 $O(n)$<br>
 //具体分析过程只要数操作数就行了，因为<code>MERGE</code>函数并没有内部调用只有顺序执行</p>
 <p>分析完<code>Merge</code>函数，我们要开始分析整个<code>MergeSort</code><br>
-$$<br>
-\begin{align*}<br>
+$$\begin{align*}<br>
 T(n) &amp;= T(n/2)+T(n/2)+O(n)\<br>
 &amp;=2\cdot T(n/2)+O(n)<br>
-\end{align*}<br>
-$$</p>
-<p>由上面画出的这颗树也很容易看到，对于第t层而言，任务有$2<sup>t$个，每个规模为$\frac{n}{2</sup>t}​$<br>
+\end{align*}$$</p>
+<p>由上面画出的这颗树也很容易看到，对于第t层而言，任务有 $2^t$ 个，每个规模为 $\frac{n}{2^t}​$<br>
 那么对于单层而言，他们“自己做的活”(不包括交给子任务的)<br>
 $$<br>
 \begin{align*}<br>
@@ -656,7 +654,7 @@ Work\ at\ Level\ i &amp;= (number\ of\ subproblems) \cdot (work\ per\ subproblem
 &amp;=O(n)<br>
 \end{align*}<br>
 $$</p>
-<p>而层数共有$\log_2{n}$层，于是很容易得到<br>
+<p>而层数共有 $\log_2{n}$ 层，于是很容易得到<br>
 $$<br>
 \begin{align*}<br>
 Total\ Work &amp;= (Work\ per\ level)\cdot(number\ of\ levels) \<br>
