@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>%2F2019%2F02%2F12%2FCS161_L3L4%2F</url>
+    <content type="text"><![CDATA[Analyze T(n) for Recurrence 对应CS161的Lecture 3,4 今天主要讲讲如何分析递推表达的时间效率，也就是如下这种形式 T(n)=f(n)+∑i=0mT(n)=f(n)+\sum_{i=0}^m T(n)=f(n)+i=0∑m​]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Study Less Study Smart]]></title>
     <url>%2F2019%2F02%2F12%2FStudyLessStudySmart%2F</url>
     <content type="text"><![CDATA[需要科学上网]]></content>
