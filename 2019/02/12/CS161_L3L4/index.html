@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="Nick Studio">
 <meta property="og:description" content="Analyze T(n) for Recurrence              对应CS161的Lecture 3,4            今天主要讲讲如何分析递推表达的时间效率，也就是如下这种形式 T(n)=f(n)+∑i=0mT(ni)(ni&amp;lt;n)T(n)=f(n)+\sum_{i=0}^mT(n_i)(n_i&amp;lt;n) T(n)=f(n)+i=0∑m​T(ni​)(ni​&amp;lt">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-12T04:52:51.774Z">
+<meta property="og:updated_time" content="2019-02-12T04:58:49.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Analyze T(n) for Recurrence">
 <meta name="twitter:description" content="Analyze T(n) for Recurrence              对应CS161的Lecture 3,4            今天主要讲讲如何分析递推表达的时间效率，也就是如下这种形式 T(n)=f(n)+∑i=0mT(ni)(ni&amp;lt;n)T(n)=f(n)+\sum_{i=0}^mT(n_i)(n_i&amp;lt;n) T(n)=f(n)+i=0∑m​T(ni​)(ni​&amp;lt">
@@ -472,7 +472,7 @@
                 
               
 
-              <time title="创建时间：2019-02-12 12:30:31 / 修改时间：12:52:51" itemprop="dateCreated datePublished" datetime="2019-02-12T12:30:31+08:00">2019-02-12</time>
+              <time title="创建时间：2019-02-12 12:30:31 / 修改时间：12:58:49" itemprop="dateCreated datePublished" datetime="2019-02-12T12:30:31+08:00">2019-02-12</time>
             
 
             
@@ -560,7 +560,7 @@
 前者只能用于各个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>n</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">n_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 相同的情况，而后者更依赖于猜的准不准。</p>
 <h2 id="master-method"><a class="markdownIt-Anchor" href="#master-method"></a> Master Method</h2>
 <p>首先我们要看一下<code>Master Method</code>解决的问题的形式</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mi>a</mi><mo>⋅</mo><mi>T</mi><mo>(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mi>b</mi><mo>)</mo><mo>+</mo><mi>f</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n)=a \cdot T(n/b)+f(n) 
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mi>a</mi><mo>⋅</mo><mi>T</mi><mo>(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mi>b</mi><mo>)</mo><mo>+</mo><mi>f</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n)=a \cdot T(n/b)+f(n)
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord mathdefault">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span></p>
 
       
