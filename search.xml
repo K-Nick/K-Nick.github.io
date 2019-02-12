@@ -3,7 +3,7 @@
   <entry>
     <title></title>
     <url>%2F2019%2F02%2F12%2FCS161_L3L4%2F</url>
-    <content type="text"><![CDATA[Analyze T(n) for Recurrence 对应CS161的Lecture 3,4 今天主要讲讲如何分析递推表达的时间效率，也就是如下这种形式 T(n)=f(n)+∑i=0mT(ni)(ni&lt;n)T(n)=f(n)+\sum_{i=0}^mT(n_i)(n_i&lt;n) T(n)=f(n)+i=0∑m​T(ni​)(ni​&lt;n) 我们会着重对分治情况下的分析进行阐述，毕竟这种递推形式肯定是和分治对应的。 我们会引入两种方法，这也是这一讲的重点 Master Method Substitution Method 在展开详细的内容之前，我们需要知道两个方法的限制。 前者只能用于各个 nin_ini​ 相同的情况，而后者更依赖于猜的准不准。 Master Method 首先我们要看一下Master Method解决的问题的形式 T()T() T()]]></content>
+    <content type="text"><![CDATA[Analyze T(n) for Recurrence 对应CS161的Lecture 3,4 今天主要讲讲如何分析递推表达的时间效率，也就是如下这种形式 T(n)=f(n)+∑i=0mT(ni)(ni&lt;n)T(n)=f(n)+\sum_{i=0}^mT(n_i)(n_i&lt;n) T(n)=f(n)+i=0∑m​T(ni​)(ni​&lt;n) 我们会着重对分治情况下的分析进行阐述，毕竟这种递推形式肯定是和分治对应的。 我们会引入两种方法，这也是这一讲的重点 Master Method Substitution Method 在展开详细的内容之前，我们需要知道两个方法的限制。 前者只能用于各个 nin_ini​ 相同的情况，而后者更依赖于猜的准不准。 Master Method 首先我们要看一下Master Method解决的问题的形式 T(n)=a⋅T(n/b)+f(n)T(n)=a \cdot T(n/b)+f(n) T(n)=a⋅T(n/b)+f(n)]]></content>
   </entry>
   <entry>
     <title><![CDATA[Study Less Study Smart]]></title>
