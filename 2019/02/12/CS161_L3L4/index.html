@@ -146,7 +146,10 @@
 <meta property="og:description" content="Analyze T(n) for Recurrence              对应CS161的Lecture 3,4            今天主要讲讲如何分析递推表达的时间效率，也就是如下这种形式 T(n)=f(n)+∑i=0mT(ni)(ni&amp;lt;n)T(n)=f(n)+\sum_{i=0}^mT(n_i)(n_i&amp;lt;n) T(n)=f(n)+i=0∑m​T(ni​)(ni​&amp;lt">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52612674-bca6e500-2ec5-11e9-8491-d852fcf7bbbc.gif">
-<meta property="og:updated_time" content="2019-02-12T05:28:27.504Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52612679-be70a880-2ec5-11e9-8322-deecba54ef29.gif">
+<meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52612682-bf093f00-2ec5-11e9-9b47-99d651027c83.gif">
+<meta property="og:image" content="https://user-images.githubusercontent.com/35764666/52612684-c0d30280-2ec5-11e9-94d6-c88d70cbd321.gif">
+<meta property="og:updated_time" content="2019-02-12T08:48:46.357Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#CS161# Analyze T(n) for Recurrence">
 <meta name="twitter:description" content="Analyze T(n) for Recurrence              对应CS161的Lecture 3,4            今天主要讲讲如何分析递推表达的时间效率，也就是如下这种形式 T(n)=f(n)+∑i=0mT(ni)(ni&amp;lt;n)T(n)=f(n)+\sum_{i=0}^mT(n_i)(n_i&amp;lt;n) T(n)=f(n)+i=0∑m​T(ni​)(ni​&amp;lt">
@@ -474,7 +477,7 @@
                 
               
 
-              <time title="创建时间：2019-02-12 12:30:31 / 修改时间：13:28:27" itemprop="dateCreated datePublished" datetime="2019-02-12T12:30:31+08:00">2019-02-12</time>
+              <time title="创建时间：2019-02-12 12:30:31 / 修改时间：16:48:46" itemprop="dateCreated datePublished" datetime="2019-02-12T12:30:31+08:00">2019-02-12</time>
             
 
             
@@ -591,6 +594,33 @@
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∴</mo><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mi mathvariant="normal">Θ</mi><mo>(</mo><mi>n</mi><mo>⋅</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\therefore T(n)=\Theta(n \cdot \log{n})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69224em;vertical-align:0em;"></span><span class="mrel amsrm">∴</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">n</span></span><span class="mclose">)</span></span></span></span></p>
 </li>
 </ol>
+<blockquote class="blockquote-center"><p>由于证明有点冗长，在这里对主定理先不做证明</p>
+</blockquote>
+<h2 id="substitution-method"><a class="markdownIt-Anchor" href="#substitution-method"></a> Substitution method</h2>
+<p>相比主定理这种并不是那么直觉的表述，代入法就显得很直觉了<br>
+法如其名，我们只要猜一猜，带进去。如果能够自洽，就是我们需要的结果。</p>
+<h3 id="k-selection-problems"><a class="markdownIt-Anchor" href="#k-selection-problems"></a> k-Selection Problems</h3>
+<p>在考虑应用代入法前，我们先看一个问题</p>
+<blockquote class="blockquote-center"><p>对于一个数组，如何求出其中第k大的值</p>
+</blockquote>
+<p>最暴力的想法显然是直接排序了，但是我们要想想有没有其他可能，比如分治？<br>
+假如我们每次把答案可能存在的区间不断缩小，有没有可能做到。<br>
+比如取一pivot，根据pivot将数组重排两段，左边都小于pivot，右边都大于pivot<br>
+我们是不是可以很容易判断，第k大应该在哪一段，然后扔掉另一端呢？</p>
+<p>那么关键在于，pivot怎么取，因为pivot的选取直接影响了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
+<p>假设每次都取最大或最小值，这显然是个糟糕的决定。</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mi>T</mi><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>+</mo><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n)=T(n-1)+O(n)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span></p>
+<p>显然会退化成一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的算法</p>
+<p>但是如果我们每次取中位数又不可能，因为我们的问题本来就是找第k大！<br>
+那么我们退而求其次，我们求一下待在比较中间的数<br>
+<img src="https://user-images.githubusercontent.com/35764666/52612679-be70a880-2ec5-11e9-8322-deecba54ef29.gif"></p>
+<p>说白了，就是五个元素一组，分别排序取中位数，然后对中位数再取中位数<br>
+我们在这里做了个证明，大致证明了这个最终的pivot，会呆在30%-70%的排名之间<br>
+<img src="https://user-images.githubusercontent.com/35764666/52612682-bf093f00-2ec5-11e9-9b47-99d651027c83.gif"></p>
+<p>于是这里出现了一条奇妙的式子<br>
+<img src="https://user-images.githubusercontent.com/35764666/52612684-c0d30280-2ec5-11e9-94d6-c88d70cbd321.gif"></p>
+<p>怎么算！代入！由于我们知道答案，我们直接猜猜O(n)</p>
 
       
     </div>
@@ -849,7 +879,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#analyze-tn-for-recurrence"><span class="nav-text"> Analyze T(n) for Recurrence</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#master-method"><span class="nav-text"> Master Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#example"><span class="nav-text"> Example</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#analyze-tn-for-recurrence"><span class="nav-text"> Analyze T(n) for Recurrence</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#master-method"><span class="nav-text"> Master Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#example"><span class="nav-text"> Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#substitution-method"><span class="nav-text"> Substitution method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#k-selection-problems"><span class="nav-text"> k-Selection Problems</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
